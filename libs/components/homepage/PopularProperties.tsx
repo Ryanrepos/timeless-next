@@ -9,6 +9,9 @@ import PopularPropertyCard from './PopularPropertyCard';
 import { Property } from '../../types/property/property';
 import Link from 'next/link';
 import { PropertiesInquiry } from '../../types/property/property.input';
+import { GET_PROPERTIES } from '../../../apollo/user/query';
+import { T } from '../../types/common';
+import { useQuery } from '@apollo/client';
 
 interface PopularPropertiesProps {
 	initialInput: PropertiesInquiry;
@@ -20,6 +23,20 @@ const PopularProperties = (props: PopularPropertiesProps) => {
 	const [popularProperties, setPopularProperties] = useState<Property[]>([]);
 
 	/** APOLLO REQUESTS **/
+
+	const {loading: getPropertiesLoading, 
+		data: getPropertiesData,   // data - buyerda cache hisoblanadi.
+		error: getPropertiesError,
+		refetch: getPropertiesRefetch,
+	} = useQuery(GET_PROPERTIES, {
+		fetchPolicy: "cache-and-network",
+		variables: {input: initialInput},  // backend ga yuborayotgan malumotlarimiz
+		notifyOnNetworkStatusChange: true,
+		onCompleted: (data: T) => {
+			setPopularProperties(data?.getProperties?.list);
+		}
+	});
+
 	/** HANDLERS **/
 
 	if (!popularProperties) return null;
