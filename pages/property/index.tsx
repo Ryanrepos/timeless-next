@@ -11,6 +11,9 @@ import { Property } from '../../libs/types/property/property';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import { Direction } from '../../libs/enums/common.enum';
+import { useQuery } from '@apollo/client';
+import { GET_PROPERTIES } from '../../apollo/user/query';
+import { T } from '../../libs/types/common';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -33,6 +36,20 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 
 	/** APOLLO REQUESTS **/
 
+	const {loading: getPropertiesLoading, 
+		data: getPropertiesData,   // data - buyerda cache hisoblanadi.
+		error: getPropertiesError,
+		refetch: getPropertiesRefetch,
+	} = useQuery(GET_PROPERTIES, {
+		fetchPolicy: "network-only",
+		variables: {input: searchFilter},  // backend ga yuborayotgan malumotlarimiz
+		notifyOnNetworkStatusChange: true,
+		onCompleted: (data: T) => {
+			setProperties(data?.getProperties?.list);
+			setTotal(data?.getProperties?.metaCounter[0]?.total);
+		}
+	});
+
 	/** LIFECYCLES **/
 	useEffect(() => {
 		if (router.query.input) {
@@ -43,7 +60,9 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 		setCurrentPage(searchFilter.page === undefined ? 1 : searchFilter.page);
 	}, [router]);
 
-	useEffect(() => {}, [searchFilter]);
+	useEffect(() => {
+		console.log("searchFilter:", searchFilter);
+	}, [searchFilter]);
 
 	/** HANDLERS **/
 	const handlePaginationChange = async (event: ChangeEvent<unknown>, value: number) => {
@@ -181,12 +200,12 @@ PropertyList.defaultProps = {
 		direction: 'DESC',
 		search: {
 			squaresRange: {
-				start: 0,
+				start: 50,
 				end: 500,
 			},
 			pricesRange: {
-				start: 0,
-				end: 2000000,
+				start: 1000,
+				end: 500000,
 			},
 		},
 	},
