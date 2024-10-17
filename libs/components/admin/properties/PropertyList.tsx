@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import NavLink from "next/link";
 import {
 	TableCell,
 	TableHead,
@@ -11,14 +11,14 @@ import {
 	Menu,
 	Fade,
 	MenuItem,
-} from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import { Stack } from '@mui/material';
-import { Property } from '../../../types/property/property';
-import { REACT_APP_API_URL } from '../../../config';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Typography from '@mui/material/Typography';
-import { PropertyStatus } from '../../../enums/property.enum';
+} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import { Stack } from "@mui/material";
+import { Property } from "../../../types/property/property";
+import { REACT_APP_API_URL } from "../../../config";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Typography from "@mui/material/Typography";
+import { PropertyStatus } from "../../../enums/property.enum";
 
 interface Data {
 	id: string;
@@ -30,7 +30,7 @@ interface Data {
 	status: string;
 }
 
-type Order = 'asc' | 'desc';
+type Order = "asc" | "desc";
 
 interface HeadCell {
 	disablePadding: boolean;
@@ -41,46 +41,46 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
 	{
-		id: 'id',
+		id: "id",
 		numeric: true,
 		disablePadding: false,
-		label: 'MB ID',
+		label: "MB ID",
 	},
 	{
-		id: 'title',
+		id: "title",
 		numeric: true,
 		disablePadding: false,
-		label: 'TITLE',
+		label: "TITLE",
 	},
 	{
-		id: 'price',
+		id: "price",
 		numeric: false,
 		disablePadding: false,
-		label: 'PRICE',
+		label: "PRICE",
 	},
 	{
-		id: 'agent',
+		id: "agent",
 		numeric: false,
 		disablePadding: false,
-		label: 'AGENT',
+		label: "AGENT",
 	},
 	{
-		id: 'location',
+		id: "location",
 		numeric: false,
 		disablePadding: false,
-		label: 'LOCATION',
+		label: "LOCATION",
 	},
 	{
-		id: 'type',
+		id: "type",
 		numeric: false,
 		disablePadding: false,
-		label: 'TYPE',
+		label: "TYPE",
 	},
 	{
-		id: 'status',
+		id: "status",
 		numeric: false,
 		disablePadding: false,
-		label: 'STATUS',
+		label: "STATUS",
 	},
 ];
 
@@ -102,8 +102,8 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 				{headCells.map((headCell) => (
 					<TableCell
 						key={headCell.id}
-						align={headCell.numeric ? 'left' : 'center'}
-						padding={headCell.disablePadding ? 'none' : 'normal'}
+						align={headCell.numeric ? "left" : "center"}
+						padding={headCell.disablePadding ? "none" : "normal"}
 					>
 						{headCell.label}
 					</TableCell>
@@ -135,14 +135,14 @@ export const PropertyPanelList = (props: PropertyPanelListType) => {
 	return (
 		<Stack>
 			<TableContainer>
-				<Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'medium'}>
+				<Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={"medium"}>
 					{/*@ts-ignore*/}
 					<EnhancedTableHead />
 					<TableBody>
 						{properties.length === 0 && (
 							<TableRow>
 								<TableCell align="center" colSpan={8}>
-									<span className={'no-data'}>data not found!</span>
+									<span className={"no-data"}>data not found!</span>
 								</TableCell>
 							</TableRow>
 						)}
@@ -152,19 +152,29 @@ export const PropertyPanelList = (props: PropertyPanelListType) => {
 								const propertyImage = `${REACT_APP_API_URL}/${property?.propertyImages[0]}`;
 
 								return (
-									<TableRow hover key={property?._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+									<TableRow hover key={property?._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
 										<TableCell align="left">{property._id}</TableCell>
-										<TableCell align="left" className={'name'}>
-											<Stack direction={'row'}>
-												<Link href={`/property/detail?id=${property?._id}`}>
+										<TableCell align="left" className={"name"}>
+											{property.propertyStatus === PropertyStatus.ACTIVE ? (
+												<Stack direction={"row"}>
+													<NavLink href={`/property/detail?id=${property?._id}`}>
+														<div>
+															<Avatar alt="Remy Sharp" src={propertyImage} sx={{ ml: "2px", mr: "10px" }} />
+														</div>
+													</NavLink>
+													<NavLink href={`/property/detail?id=${property?._id}`}>
+														<div>{property.propertyTitle}</div>
+													</NavLink>
+												</Stack>
+											) : (
+												<Stack direction={"row"}>
 													<div>
-														<Avatar alt="Remy Sharp" src={propertyImage} sx={{ ml: '2px', mr: '10px' }} />
+														<Avatar alt="Remy Sharp" src={propertyImage} sx={{ ml: "2px", mr: "10px" }} />
 													</div>
-												</Link>
-												<Link href={`/property/detail?id=${property?._id}`}>
-													<div>{property.propertyTitle}</div>
-												</Link>
-											</Stack>
+
+													<div style={{ marginTop: "10px" }}>{property.propertyTitle}</div>
+												</Stack>
+											)}
 										</TableCell>
 										<TableCell align="center">{property.propertyPrice}</TableCell>
 										<TableCell align="center">{property.memberData?.memberNick}</TableCell>
@@ -174,7 +184,7 @@ export const PropertyPanelList = (props: PropertyPanelListType) => {
 											{property.propertyStatus === PropertyStatus.DELETE && (
 												<Button
 													variant="outlined"
-													sx={{ p: '3px', border: 'none', ':hover': { border: '1px solid #000000' } }}
+													sx={{ p: "3px", border: "none", ":hover": { border: "1px solid #000000" } }}
 													onClick={() => removePropertyHandler(property._id)}
 												>
 													<DeleteIcon fontSize="small" />
@@ -182,19 +192,19 @@ export const PropertyPanelList = (props: PropertyPanelListType) => {
 											)}
 
 											{property.propertyStatus === PropertyStatus.SOLD && (
-												<Button className={'badge warning'}>{property.propertyStatus}</Button>
+												<Button className={"badge warning"}>{property.propertyStatus}</Button>
 											)}
 
 											{property.propertyStatus === PropertyStatus.ACTIVE && (
 												<>
-													<Button onClick={(e: any) => menuIconClickHandler(e, index)} className={'badge success'}>
+													<Button onClick={(e: any) => menuIconClickHandler(e, index)} className={"badge success"}>
 														{property.propertyStatus}
 													</Button>
 
 													<Menu
-														className={'menu-modal'}
+														className={"menu-modal"}
 														MenuListProps={{
-															'aria-labelledby': 'fade-button',
+															"aria-labelledby": "fade-button",
 														}}
 														anchorEl={anchorEl[index]}
 														open={Boolean(anchorEl[index])}
@@ -209,7 +219,7 @@ export const PropertyPanelList = (props: PropertyPanelListType) => {
 																	onClick={() => updatePropertyHandler({ _id: property._id, propertyStatus: status })}
 																	key={status}
 																>
-																	<Typography variant={'subtitle1'} component={'span'}>
+																	<Typography variant={"subtitle1"} component={"span"}>
 																		{status}
 																	</Typography>
 																</MenuItem>
