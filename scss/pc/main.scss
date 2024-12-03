@@ -47,19 +47,20 @@ body::-webkit-scrollbar {
 	#top {
 		.navbar {
 			.navbar-main {
+				background-color: white;
 				position: fixed;
 				padding: 22px 0px;
 				width: 100%;
-				height: 87px;
+				height: 70px;
 				display: flex;
 				flex-direction: row;
 				box-sizing: border-box;
 				z-index: 99;
 				align-items: center;
-				border-top: 1px solid rgba(255, 255, 255, 0.07);
-				&.transparent {
-					background-color: #181a209e;
-				}
+				border-top: 1px solid white;
+				// &.transparent {
+				// 	background-color: white;
+				// }
 				.container {
 					flex-direction: row;
 					align-items: center;
@@ -78,8 +79,8 @@ body::-webkit-scrollbar {
 						justify-content: space-between;
 						div {
 							position: relative;
-							color: #eeeeeeed;
-							font-family: $font;
+							color: black;
+							font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 							font-size: 15px;
 							font-style: normal;
 							font-weight: 600;
@@ -115,15 +116,15 @@ body::-webkit-scrollbar {
 						justify-content: flex-end;
 						.join-box {
 							width: 184px;
-							height: 47px;
+							height: 40px;
 							display: flex;
 							align-items: center;
 							justify-content: center;
-							border-radius: 60px;
-							border: 1px solid #ffffff;
+							// border-radius: 60px;
+							border: 1px solid green;
 							cursor: pointer;
 							svg {
-								color: #ffffff;
+								color: green;
 								margin-right: 10px;
 							}
 							span {
@@ -132,7 +133,8 @@ body::-webkit-scrollbar {
 								font-style: normal;
 								font-weight: 600;
 								line-height: normal;
-								color: #ffffff;
+								// color: #ffffff;
+								color: green;
 							}
 						}
 						.login-user {
@@ -141,6 +143,7 @@ body::-webkit-scrollbar {
 								height: 42px;
 								border-radius: 50%;
 								object-fit: cover;
+								color: green;
 							}
 						}
 					}
@@ -149,7 +152,7 @@ body::-webkit-scrollbar {
 						display: flex;
 						align-items: center;
 						.notification-icon {
-							color: white;
+							color: green;
 						}
 						.btn-lang {
 							border-radius: 4px;
@@ -174,25 +177,30 @@ body::-webkit-scrollbar {
 	.header-main {
 		position: relative;
 		width: 100%;
-		height: 860px;
-		background-image: url('/img/banner/header1.svg');
+		height: 760px;
+		background-image: url('/img/banner/headerM.jpg');
 		background-size: cover;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
 		.container {
 			position: relative;
 			margin-top: 20px;
+			margin-bottom: 60px;
 			flex-direction: column;
 			align-items: center;
 			.search-box {
 				position: relative;
 				margin-top: 56px;
 				padding: 16px 29px;
-				width: 1094px;
-				height: 96px;
+				width: 1000px;
+				height: 85px;
 				display: flex;
 				flex-direction: row;
-				justify-content: space-between;
-				background: rgba(255, 255, 255, 0.28);
-				border-radius: 12px;
+				justify-content: space-around;
+				// background: rgba(255, 255, 255, 0.28);
+				border-radius: 8px;
+				background-color: rgba(9, 120, 9, 0.5);
 				.select-box {
 					width: 712px;
 					display: flex;
@@ -200,16 +208,18 @@ body::-webkit-scrollbar {
 					justify-content: space-between;
 					.box {
 						padding: 24px 22px;
-						width: 213px;
+						width: 200px;
 						height: 56px;
 						display: flex;
 						flex-direction: row;
 						align-items: center;
 						justify-content: space-between;
-						border-radius: 12px;
+						border-radius: 8px;
 						background: rgba(255, 255, 255, 0.575);
 						box-sizing: border-box;
 						cursor: pointer;
+						background-color: white;
+
 						&.on {
 							background: #ffffff;
 							border: 1px solid #000;
@@ -238,7 +248,7 @@ body::-webkit-scrollbar {
 						img {
 							margin-right: 10px;
 							width: 25px;
-							height: 22px;
+							height: 19px;
 							cursor: pointer;
 						}
 						span {
@@ -259,12 +269,18 @@ body::-webkit-scrollbar {
 						align-items: center;
 						justify-content: center;
 						border-radius: 55px;
-						background: #f17742;
+						// background: #f17742;
+						background: white;
 						cursor: pointer;
 						svg {
 							width: 20px;
 							height: 20px;
 							color: #ffffff;
+						}
+						.lookUp {
+							height: 25px;
+							width: 25px;
+
 						}
 					}
 				}

@@ -68,7 +68,7 @@ const MemberFollowings = (props: MemberFollowingsProps) => {
   console.log("memberFollowings =>", memberFollowings);
 
 	if (device === "mobile") {
-		return <div>NESTAR FOLLOWS MOBILE</div>;
+		return <div>Timeless FOLLOWS MOBILE</div>;
 	} else {
 		return (
 			<div id="member-follows-page">
