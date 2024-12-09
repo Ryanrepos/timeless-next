@@ -39,6 +39,12 @@ const withLayoutMain = (Component: any) => {
 							<Top />
 						</Stack>
 
+						<Stack>
+							<Stack>
+								<HeaderFilter />
+							</Stack>
+						</Stack>
+
 						<Stack id={'main'}>
 							<Component {...props} />
 						</Stack>

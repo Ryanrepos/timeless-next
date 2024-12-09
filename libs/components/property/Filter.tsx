@@ -13,11 +13,10 @@ import {
 	IconButton,
 } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { PropertyLocation, PropertyType } from '../../enums/property.enum';
+import { PropertyLocation, PropertyCategory } from '../../enums/property.enum';
 import { PropertiesInquiry } from '../../types/property/property.input';
 import { useRouter } from 'next/router';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-import { propertySquare } from '../../config';
 import RefreshIcon from '@mui/icons-material/Refresh';
 
 const MenuProps = {
@@ -39,7 +38,7 @@ const Filter = (props: FilterType) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const [propertyLocation, setPropertyLocation] = useState<PropertyLocation[]>(Object.values(PropertyLocation));
-	const [propertyType, setPropertyType] = useState<PropertyType[]>(Object.values(PropertyType));
+	const [propertyType, setPropertyType] = useState<PropertyCategory[]>(Object.values(PropertyCategory));
 	const [searchText, setSearchText] = useState<string>('');
 	const [showMore, setShowMore] = useState<boolean>(false);
 
@@ -62,8 +61,8 @@ const Filter = (props: FilterType) => {
 			})}`, { scroll: false }).then();
 		}
 
-		if (searchFilter?.search?.typeList?.length == 0) {
-			delete searchFilter.search.typeList;
+		if (searchFilter?.search?.categoryList?.length == 0) {
+			delete searchFilter.search.categoryList;
 			router.push(`/property?input=${JSON.stringify({
 				...searchFilter,
 				search: {
@@ -77,20 +76,20 @@ const Filter = (props: FilterType) => {
 			})}`, { scroll: false }).then();
 		}
 
-		if (searchFilter?.search?.roomsList?.length == 0) {
-			delete searchFilter.search.roomsList;
-			router.push(`/property?input=${JSON.stringify({
-				...searchFilter,
-				search: {
-					...searchFilter.search,
-				},
-			})}`, `/property?input=${JSON.stringify({
-				...searchFilter,
-				search: {
-					...searchFilter.search,
-				},
-			})}`, { scroll: false }).then();
-		}
+		// if (searchFilter?.search?.roomsList?.length == 0) {
+		// 	delete searchFilter.search.roomsList;
+		// 	router.push(`/property?input=${JSON.stringify({
+		// 		...searchFilter,
+		// 		search: {
+		// 			...searchFilter.search,
+		// 		},
+		// 	})}`, `/property?input=${JSON.stringify({
+		// 		...searchFilter,
+		// 		search: {
+		// 			...searchFilter.search,
+		// 		},
+		// 	})}`, { scroll: false }).then();
+		// }
 
 		if (searchFilter?.search?.options?.length == 0) {
 			delete searchFilter.search.options;
@@ -107,20 +106,20 @@ const Filter = (props: FilterType) => {
 			})}`, { scroll: false }).then();
 		}
 
-		if (searchFilter?.search?.bedsList?.length == 0) {
-			delete searchFilter.search.bedsList;
-			router.push(`/property?input=${JSON.stringify({
-				...searchFilter,
-				search: {
-					...searchFilter.search,
-				},
-			})}`, `/property?input=${JSON.stringify({
-				...searchFilter,
-				search: {
-					...searchFilter.search,
-				},
-			})}`, { scroll: false }).then();
-		}
+		// if (searchFilter?.search?.bedsList?.length == 0) {
+		// 	delete searchFilter.search.bedsList;
+		// 	router.push(`/property?input=${JSON.stringify({
+		// 		...searchFilter,
+		// 		search: {
+		// 			...searchFilter.search,
+		// 		},
+		// 	})}`, `/property?input=${JSON.stringify({
+		// 		...searchFilter,
+		// 		search: {
+		// 			...searchFilter.search,
+		// 		},
+		// 	})}`, { scroll: false }).then();
+		// }
 
 		if (searchFilter?.search?.locationList) setShowMore(true);
 	}, [searchFilter]);
@@ -163,7 +162,7 @@ const Filter = (props: FilterType) => {
 					);
 				}
 
-				if (searchFilter?.search?.typeList?.length == 0) {
+				if (searchFilter?.search?.categoryList?.length == 0) {
 					alert('error');
 				}
 
@@ -175,7 +174,7 @@ const Filter = (props: FilterType) => {
 		[searchFilter],
 	);
 
-	const propertyTypeSelectHandler = useCallback(
+	const propertyCategorySelectHandler = useCallback(
 		async (e: any) => {
 			try {
 				const isChecked = e.target.checked;
@@ -184,35 +183,35 @@ const Filter = (props: FilterType) => {
 					await router.push(
 						`/property?input=${JSON.stringify({
 							...searchFilter,
-							search: { ...searchFilter.search, typeList: [...(searchFilter?.search?.typeList || []), value] },
+							search: { ...searchFilter.search, categoryList: [...(searchFilter?.search?.categoryList || []), value] },
 						})}`,
 						`/property?input=${JSON.stringify({
 							...searchFilter,
-							search: { ...searchFilter.search, typeList: [...(searchFilter?.search?.typeList || []), value] },
+							search: { ...searchFilter.search, categoryList: [...(searchFilter?.search?.categoryList || []), value] },
 						})}`,
 						{ scroll: false },
 					);
-				} else if (searchFilter?.search?.typeList?.includes(value)) {
+				} else if (searchFilter?.search?.categoryList?.includes(value)) {
 					await router.push(
 						`/property?input=${JSON.stringify({
 							...searchFilter,
 							search: {
 								...searchFilter.search,
-								typeList: searchFilter?.search?.typeList?.filter((item: string) => item !== value),
+								typeList: searchFilter?.search?.categoryList?.filter((item: string) => item !== value),
 							},
 						})}`,
 						`/property?input=${JSON.stringify({
 							...searchFilter,
 							search: {
 								...searchFilter.search,
-								typeList: searchFilter?.search?.typeList?.filter((item: string) => item !== value),
+								typeList: searchFilter?.search?.categoryList?.filter((item: string) => item !== value),
 							},
 						})}`,
 						{ scroll: false },
 					);
 				}
 
-				if (searchFilter?.search?.typeList?.length == 0) {
+				if (searchFilter?.search?.categoryList?.length == 0) {
 					alert('error');
 				}
 
@@ -224,68 +223,68 @@ const Filter = (props: FilterType) => {
 		[searchFilter],
 	);
 
-	const propertyRoomSelectHandler = useCallback(
-		async (number: Number) => {
-			try {
-				if (number != 0) {
-					if (searchFilter?.search?.roomsList?.includes(number)) {
-						await router.push(
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: {
-									...searchFilter.search,
-									roomsList: searchFilter?.search?.roomsList?.filter((item: Number) => item !== number),
-								},
-							})}`,
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: {
-									...searchFilter.search,
-									roomsList: searchFilter?.search?.roomsList?.filter((item: Number) => item !== number),
-								},
-							})}`,
-							{ scroll: false },
-						);
-					} else {
-						await router.push(
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: { ...searchFilter.search, roomsList: [...(searchFilter?.search?.roomsList || []), number] },
-							})}`,
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: { ...searchFilter.search, roomsList: [...(searchFilter?.search?.roomsList || []), number] },
-							})}`,
-							{ scroll: false },
-						);
-					}
-				} else {
-					delete searchFilter?.search.roomsList;
-					setSearchFilter({ ...searchFilter });
-					await router.push(
-						`/property?input=${JSON.stringify({
-							...searchFilter,
-							search: {
-								...searchFilter.search,
-							},
-						})}`,
-						`/property?input=${JSON.stringify({
-							...searchFilter,
-							search: {
-								...searchFilter.search,
-							},
-						})}`,
-						{ scroll: false },
-					);
-				}
+	// const propertyRoomSelectHandler = useCallback(
+	// 	async (number: Number) => {
+	// 		try {
+	// 			if (number != 0) {
+	// 				if (searchFilter?.search?.roomsList?.includes(number)) {
+	// 					await router.push(
+	// 						`/property?input=${JSON.stringify({
+	// 							...searchFilter,
+	// 							search: {
+	// 								...searchFilter.search,
+	// 								roomsList: searchFilter?.search?.roomsList?.filter((item: Number) => item !== number),
+	// 							},
+	// 						})}`,
+	// 						`/property?input=${JSON.stringify({
+	// 							...searchFilter,
+	// 							search: {
+	// 								...searchFilter.search,
+	// 								roomsList: searchFilter?.search?.roomsList?.filter((item: Number) => item !== number),
+	// 							},
+	// 						})}`,
+	// 						{ scroll: false },
+	// 					);
+	// 				} else {
+	// 					await router.push(
+	// 						`/property?input=${JSON.stringify({
+	// 							...searchFilter,
+	// 							search: { ...searchFilter.search, roomsList: [...(searchFilter?.search?.roomsList || []), number] },
+	// 						})}`,
+	// 						`/property?input=${JSON.stringify({
+	// 							...searchFilter,
+	// 							search: { ...searchFilter.search, roomsList: [...(searchFilter?.search?.roomsList || []), number] },
+	// 						})}`,
+	// 						{ scroll: false },
+	// 					);
+	// 				}
+	// 			} else {
+	// 				delete searchFilter?.search.roomsList;
+	// 				setSearchFilter({ ...searchFilter });
+	// 				await router.push(
+	// 					`/property?input=${JSON.stringify({
+	// 						...searchFilter,
+	// 						search: {
+	// 							...searchFilter.search,
+	// 						},
+	// 					})}`,
+	// 					`/property?input=${JSON.stringify({
+	// 						...searchFilter,
+	// 						search: {
+	// 							...searchFilter.search,
+	// 						},
+	// 					})}`,
+	// 					{ scroll: false },
+	// 				);
+	// 			}
 
-				console.log('propertyRoomSelectHandler:', number);
-			} catch (err: any) {
-				console.log('ERROR, propertyRoomSelectHandler:', err);
-			}
-		},
-		[searchFilter],
-	);
+	// 			console.log('propertyRoomSelectHandler:', number);
+	// 		} catch (err: any) {
+	// 			console.log('ERROR, propertyRoomSelectHandler:', err);
+	// 		}
+	// 	},
+	// 	[searchFilter],
+	// );
 
 	const propertyOptionSelectHandler = useCallback(
 		async (e: any) => {
@@ -332,113 +331,113 @@ const Filter = (props: FilterType) => {
 		[searchFilter],
 	);
 
-	const propertyBedSelectHandler = useCallback(
-		async (number: Number) => {
-			try {
-				if (number != 0) {
-					if (searchFilter?.search?.bedsList?.includes(number)) {
-						await router.push(
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: {
-									...searchFilter.search,
-									bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
-								},
-							})}`,
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: {
-									...searchFilter.search,
-									bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
-								},
-							})}`,
-							{ scroll: false },
-						);
-					} else {
-						await router.push(
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
-							})}`,
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
-							})}`,
-							{ scroll: false },
-						);
-					}
-				} else {
-					delete searchFilter?.search.bedsList;
-					setSearchFilter({ ...searchFilter });
-					await router.push(
-						`/property?input=${JSON.stringify({
-							...searchFilter,
-							search: {
-								...searchFilter.search,
-							},
-						})}`,
-						`/property?input=${JSON.stringify({
-							...searchFilter,
-							search: {
-								...searchFilter.search,
-							},
-						})}`,
-						{ scroll: false },
-					);
-				}
+	// const propertyBedSelectHandler = useCallback(
+	// 	async (number: Number) => {
+	// 		try {
+	// 			if (number != 0) {
+	// 				if (searchFilter?.search?.bedsList?.includes(number)) {
+	// 					await router.push(
+	// 						`/property?input=${JSON.stringify({
+	// 							...searchFilter,
+	// 							search: {
+	// 								...searchFilter.search,
+	// 								bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
+	// 							},
+	// 						})}`,
+	// 						`/property?input=${JSON.stringify({
+	// 							...searchFilter,
+	// 							search: {
+	// 								...searchFilter.search,
+	// 								bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
+	// 							},
+	// 						})}`,
+	// 						{ scroll: false },
+	// 					);
+	// 				} else {
+	// 					await router.push(
+	// 						`/property?input=${JSON.stringify({
+	// 							...searchFilter,
+	// 							search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
+	// 						})}`,
+	// 						`/property?input=${JSON.stringify({
+	// 							...searchFilter,
+	// 							search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
+	// 						})}`,
+	// 						{ scroll: false },
+	// 					);
+	// 				}
+	// 			} else {
+	// 				delete searchFilter?.search.bedsList;
+	// 				setSearchFilter({ ...searchFilter });
+	// 				await router.push(
+	// 					`/property?input=${JSON.stringify({
+	// 						...searchFilter,
+	// 						search: {
+	// 							...searchFilter.search,
+	// 						},
+	// 					})}`,
+	// 					`/property?input=${JSON.stringify({
+	// 						...searchFilter,
+	// 						search: {
+	// 							...searchFilter.search,
+	// 						},
+	// 					})}`,
+	// 					{ scroll: false },
+	// 				);
+	// 			}
 
-				console.log('propertyBedSelectHandler:', number);
-			} catch (err: any) {
-				console.log('ERROR, propertyBedSelectHandler:', err);
-			}
-		},
-		[searchFilter],
-	);
+	// 			console.log('propertyBedSelectHandler:', number);
+	// 		} catch (err: any) {
+	// 			console.log('ERROR, propertyBedSelectHandler:', err);
+	// 		}
+	// 	},
+	// 	[searchFilter],
+	// );
 
-	const propertySquareHandler = useCallback(
-		async (e: any, type: string) => {
-			const value = e.target.value;
+	// const propertySquareHandler = useCallback(
+	// 	async (e: any, type: string) => {
+	// 		const value = e.target.value;
 
-			if (type == 'start') {
-				await router.push(
-					`/property?input=${JSON.stringify({
-						...searchFilter,
-						search: {
-							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, start: value },
-						},
-					})}`,
-					`/property?input=${JSON.stringify({
-						...searchFilter,
-						search: {
-							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, start: value },
-						},
-					})}`,
-					{ scroll: false },
-				);
-			} else {
-				await router.push(
-					`/property?input=${JSON.stringify({
-						...searchFilter,
-						search: {
-							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, end: value },
-						},
-					})}`,
-					`/property?input=${JSON.stringify({
-						...searchFilter,
-						search: {
-							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, end: value },
-						},
-					})}`,
-					{ scroll: false },
-				);
-			}
-		},
-		[searchFilter],
-	);
+	// 		if (type == 'start') {
+	// 			await router.push(
+	// 				`/property?input=${JSON.stringify({
+	// 					...searchFilter,
+	// 					search: {
+	// 						...searchFilter.search,
+	// 						squaresRange: { ...searchFilter.search.squaresRange, start: value },
+	// 					},
+	// 				})}`,
+	// 				`/property?input=${JSON.stringify({
+	// 					...searchFilter,
+	// 					search: {
+	// 						...searchFilter.search,
+	// 						squaresRange: { ...searchFilter.search.squaresRange, start: value },
+	// 					},
+	// 				})}`,
+	// 				{ scroll: false },
+	// 			);
+	// 		} else {
+	// 			await router.push(
+	// 				`/property?input=${JSON.stringify({
+	// 					...searchFilter,
+	// 					search: {
+	// 						...searchFilter.search,
+	// 						squaresRange: { ...searchFilter.search.squaresRange, end: value },
+	// 					},
+	// 				})}`,
+	// 				`/property?input=${JSON.stringify({
+	// 					...searchFilter,
+	// 					search: {
+	// 						...searchFilter.search,
+	// 						squaresRange: { ...searchFilter.search.squaresRange, end: value },
+	// 					},
+	// 				})}`,
+	// 				{ scroll: false },
+	// 			);
+	// 		}
+	// 	},
+	// 	[searchFilter],
+	// );
 
 	const propertyPriceHandler = useCallback(
 		async (value: number, type: string) => {
@@ -502,7 +501,7 @@ const Filter = (props: FilterType) => {
 		return (
 			<Stack className={'filter-main'}>
 				<Stack className={'find-your-home'} mb={'40px'}>
-					<Typography className={'title-main'}>Find Your Home</Typography>
+					<Typography className={'title-main'}>Find Your Watch</Typography>
 					<Stack className={'input-box'}>
 						<OutlinedInput
 							value={searchText}
@@ -584,8 +583,8 @@ const Filter = (props: FilterType) => {
 								color="default"
 								size="small"
 								value={type}
-								onChange={propertyTypeSelectHandler}
-								checked={(searchFilter?.search?.typeList || []).includes(type as PropertyType)}
+								onChange={propertyCategorySelectHandler}
+								checked={(searchFilter?.search?.categoryList || []).includes(type as PropertyCategory)}
 							/>
 							<label style={{ cursor: 'pointer' }}>
 								<Typography className="property_type">{type}</Typography>
@@ -593,7 +592,7 @@ const Filter = (props: FilterType) => {
 						</Stack>
 					))}
 				</Stack>
-				<Stack className={'find-your-home'} mb={'30px'}>
+				{/* <Stack className={'find-your-home'} mb={'30px'}>
 					<Typography className={'title'}>Rooms</Typography>
 					<Stack className="button-group">
 						<Button
@@ -656,8 +655,8 @@ const Filter = (props: FilterType) => {
 							5+
 						</Button>
 					</Stack>
-				</Stack>
-				<Stack className={'find-your-home'} mb={'30px'}>
+				</Stack> */}
+				{/* <Stack className={'find-your-home'} mb={'30px'}>
 					<Typography className={'title'}>Bedrooms</Typography>
 					<Stack className="button-group">
 						<Button
@@ -721,7 +720,7 @@ const Filter = (props: FilterType) => {
 							5+
 						</Button>
 					</Stack>
-				</Stack>
+				</Stack> */}
 				<Stack className={'find-your-home'} mb={'30px'}>
 					<Typography className={'title'}>Options</Typography>
 					<Stack className={'input-box'}>
@@ -731,11 +730,11 @@ const Filter = (props: FilterType) => {
 							color="default"
 							size="small"
 							value={'propertyBarter'}
-							checked={(searchFilter?.search?.options || []).includes('propertyBarter')}
+							checked={(searchFilter?.search?.options || []).includes('watchNew')}
 							onChange={propertyOptionSelectHandler}
 						/>
 						<label htmlFor={'Barter'} style={{ cursor: 'pointer' }}>
-							<Typography className="propert-type">Barter</Typography>
+							<Typography className="propert-type">New</Typography>
 						</label>
 					</Stack>
 					<Stack className={'input-box'}>
@@ -745,15 +744,15 @@ const Filter = (props: FilterType) => {
 							color="default"
 							size="small"
 							value={'propertyRent'}
-							checked={(searchFilter?.search?.options || []).includes('propertyRent')}
+							checked={(searchFilter?.search?.options || []).includes('watchWorn')}
 							onChange={propertyOptionSelectHandler}
 						/>
 						<label htmlFor={'Rent'} style={{ cursor: 'pointer' }}>
-							<Typography className="propert-type">Rent</Typography>
+							<Typography className="propert-type">Worn</Typography>
 						</label>
 					</Stack>
 				</Stack>
-				<Stack className={'find-your-home'} mb={'30px'}>
+				{/* <Stack className={'find-your-home'} mb={'30px'}>
 					<Typography className={'title'}>Square meter</Typography>
 					<Stack className="square-year-input">
 						<FormControl>
@@ -800,7 +799,7 @@ const Filter = (props: FilterType) => {
 							</Select>
 						</FormControl>
 					</Stack>
-				</Stack>
+				</Stack> */}
 				<Stack className={'find-your-home'}>
 					<Typography className={'title'}>Price Range</Typography>
 					<Stack className="square-year-input">

@@ -137,7 +137,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 						<Box component={'div'} className={'left'}>
 							<input
 								type="text"
-								placeholder={'Search for an agent'}
+								placeholder={'Search agents'}
 								value={searchText}
 								onChange={(e: any) => setSearchText(e.target.value)}
 								onKeyDown={(event: any) => {
@@ -181,7 +181,9 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 							</div>
 						) : (
 							agents.map((agent: Member) => {
-								return <AgentCard agent={agent} likeMemberHandler={likeMemberHandler} key={agent._id} />;
+							
+								return 	<div data-aos="fade-up"> <AgentCard agent={agent} likeMemberHandler={likeMemberHandler} key={agent._id} /></div> 
+
 							})
 						)}
 					</Stack>

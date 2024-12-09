@@ -85,6 +85,7 @@ const CommunityCard = (props: CommunityCardProps) => {
 					</Stack>
 				</Stack>
 				<Stack className="date-box">
+					<span className={"publish"}>Published at </span>
 					<Moment className="month" format={'MMMM'}>
 						{boardArticle?.createdAt}
 					</Moment>

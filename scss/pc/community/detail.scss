@@ -9,73 +9,6 @@
 			.main-box {
 				flex-direction: row;
 				gap: 31px;
-				.left-config {
-					width: 266px;
-					height: fit-content;
-					gap: 30px;
-					padding: 30px 15px 57px 21px;
-					margin-top: 100px;
-					border-radius: 12px;
-					border: 1px solid rgba(196, 196, 196, 0.79);
-					background: #fff;
-					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
-					.image-info {
-						width: 100%;
-						flex-direction: row;
-						gap: 11px;
-						img {
-							width: 80px;
-							height: 80px;
-							border-radius: 50%;
-							object-fit: cover;
-						}
-						.community-name {
-							.name {
-								margin-top: 15px;
-								color: #181a20;
-								font-family: $font;
-								font-size: 15px;
-								font-style: normal;
-								font-weight: 600;
-								line-height: normal;
-							}
-						}
-					}
-					.tab-button {
-						width: 216.612px;
-						height: 36px;
-						padding: 0;
-						justify-content: center;
-						align-items: center;
-						border-radius: 6px;
-						border: 1px solid #181a20;
-						margin-bottom: 10px;
-						color: #181a20;
-						font-family: $font;
-						font-size: 14px;
-						font-style: normal;
-						font-weight: 500;
-						line-height: 150%;
-						letter-spacing: -0.266px;
-					}
-					.tab-button.active {
-						width: 216.612px;
-						height: 36px;
-						padding: 0;
-						justify-content: center;
-						align-items: center;
-						background-color: #000000;
-						color: #ffffff;
-						border-radius: 6px;
-						margin-bottom: 10px;
-						font-family: $font;
-						font-size: 14px;
-						font-style: normal;
-						font-weight: 500;
-						line-height: 150%;
-						letter-spacing: -0.266px;
-					}
-				}
 				.community-detail-config {
 					.title-box {
 						width: 100%;
@@ -110,7 +43,7 @@
 							width: 91px;
 							height: 32px;
 							border-radius: 4px;
-							background: #eb6753;
+							background-color: green;
 							color: #fff;
 							font-family: $font;
 							font-size: 13px;
@@ -410,6 +343,81 @@
 								}
 							}
 						}
+					}
+				}
+				.left-config {
+					width: 270px;
+					height: fit-content;
+					gap: 30px;
+					padding: 30px 15px 57px 21px;
+					margin-top: 100px;
+					margin-bottom: 50px;
+					border-radius: 12px;
+					background: #fff;
+					box-shadow: 0px 4px 12px rgba(83, 89, 107, 0.2);
+					.image-info {
+						width: 100%;
+						flex-direction: row;
+						gap: 11px;
+						align-items: center;
+						img {
+							width: 80px;
+							height: 80px;
+							border-radius: 50%;
+							object-fit: cover;
+						}
+						.community-name {
+							.name {
+								margin-top: 15px;
+								color: #181a20;
+								font-family: $font;
+								font-size: 15px;
+								font-style: normal;
+								font-weight: 600;
+								line-height: normal;
+							}
+						}
+					}
+					.tablist {
+						display: flex;
+						flex-direction: row;
+						justify-content: space-around;
+					}
+					.tab-button {
+						width: 216.612px;
+						height: 36px;
+						padding: 0;
+						justify-content: center;
+						align-items: center;
+						border-radius: 6px;
+						box-shadow: 0px 1px 4px 0px rgba(83, 89, 107, 0.07);
+
+						margin-bottom: 10px;
+						color: #181a20;
+						font-family: $font;
+						font-size: 14px;
+						font-style: normal;
+						font-weight: 500;
+						line-height: 150%;
+						letter-spacing: -0.266px;
+
+					}
+					.tab-button.active {
+						width: 216.612px;
+						height: 36px;
+						padding: 0;
+						justify-content: center;
+						align-items: center;
+						background-color: #000000;
+						color: #ffffff;
+						border-radius: 6px;
+						margin-bottom: 10px;
+						font-family: $font;
+						font-size: 14px;
+						font-style: normal;
+						font-weight: 500;
+						line-height: 150%;
+						letter-spacing: -0.266px;
 					}
 				}
 			}

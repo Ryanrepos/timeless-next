@@ -35,12 +35,13 @@ const CS: NextPage = () => {
 		return <h1>CS PAGE MOBILE</h1>;
 	} else {
 		return (
+			<div data-aos="fade-up">
 			<Stack className={'cs-page'}>
 				<Stack className={'container'}>
 					<Box component={'div'} className={'cs-main-info'}>
 						<Box component={'div'} className={'info'}>
-							<span>Cs center</span>
-							<p>I will answer your questions</p>
+							<span>Notifications</span>
+							<p>Check out lates messages</p>
 						</Box>
 						<Box component={'div'} className={'btns'}>
 							<div
@@ -68,7 +69,9 @@ const CS: NextPage = () => {
 						{tab === 'faq' && <Faq />}
 					</Box>
 				</Stack>
-			</Stack>
+			</Stack>			
+			</div>
+			
 		);
 	}
 };

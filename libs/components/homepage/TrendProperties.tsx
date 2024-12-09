@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Stack, Box } from '@mui/material';
+import { Stack, Box, Button } from '@mui/material';
+import Link from 'next/link';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import WestIcon from '@mui/icons-material/West';
 import EastIcon from '@mui/icons-material/East';
@@ -68,7 +69,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 			<Stack className={'trend-properties'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Trend Properties</span>
+						<span>Trend Watches</span>
 					</Stack>
 					<Stack className={'card-box'}>
 						{trendProperties.length === 0 ? (
@@ -102,7 +103,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
-							<span>Trend Properties</span>
+							<span>Trend Watches</span>
 							<p>Trend is based on likes</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
@@ -142,6 +143,11 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 							</Swiper>
 						)}
 					</Stack>
+					<Button className={"display-all"}>
+					<Link href={'/property'}>
+						<span>Display All</span>
+					</Link>
+					</Button>
 				</Stack>
 			</Stack>
 		);

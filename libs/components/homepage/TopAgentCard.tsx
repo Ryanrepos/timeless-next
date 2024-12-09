@@ -22,7 +22,7 @@ const TopAgentCard = (props: TopAgentProps) => {
 			<Stack className="top-agent-card">
 				<img src={agentImage} alt="" />
 
-				<strong>{agent?.memberNick}</strong>
+				<strong>Name: {agent?.memberNick}</strong>
 				<span>{agent?.memberType}</span>
 			</Stack>
 		);
@@ -31,7 +31,7 @@ const TopAgentCard = (props: TopAgentProps) => {
 			<Stack className="top-agent-card">
 				<img src={agentImage} alt="" />
 
-				<strong>{agent?.memberNick}</strong>
+				<strong>Name: {agent?.memberNick}</strong>
 				<span>{agent?.memberType}</span>
 			</Stack>
 		);

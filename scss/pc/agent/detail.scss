@@ -14,9 +14,13 @@
 			.agent-info {
 				margin-left: 58px;
 				width: 100%;
+				height: 270px;
 				display: flex;
-				flex-direction: row;
 				align-items: center;
+				justify-content: space-around;
+				background-color: rgb(231, 223, 223);
+				border-radius: 12px;
+				box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
 				img {
 					margin-right: 32px;
 					width: 135px;
@@ -90,6 +94,7 @@
 						margin-bottom: 34px;
 						display: flex;
 						flex-direction: column;
+
 						.agent-img {
 							border-radius: 12px;
 							width: 233px;
@@ -156,11 +161,14 @@
 				padding: 58px 19px;
 				width: 95%;
 				height: auto;
-				border-radius: 24px;
-				background: #f6f6f6;
+				background-color: rgb(231, 223, 223);
+				border-radius: 12px;
+				box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+
 				.main-intro {
 					display: flex;
 					flex-direction: column;
+					align-items: center;
 					span {
 						color: #181a20;
 						font-family: $font;
@@ -313,7 +321,8 @@
 						display: flex;
 						justify-content: flex-end;
 						button:disabled {
-							background: #dfdfdf;
+							background-color: green;
+
 						}
 						.submit-review {
 							display: flex;
@@ -325,9 +334,10 @@
 							gap: 10px;
 							border-radius: 12px;
 							border: 1px solid #c4c4c4;
+
 							cursor: pointer;
 							.title {
-								color: #181a20;
+								color: white;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;

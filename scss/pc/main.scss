@@ -51,7 +51,7 @@ body::-webkit-scrollbar {
 				position: fixed;
 				padding: 22px 0px;
 				width: 100%;
-				height: 70px;
+				height: 50px;
 				display: flex;
 				flex-direction: row;
 				box-sizing: border-box;
@@ -67,6 +67,7 @@ body::-webkit-scrollbar {
 					justify-content: space-between;
 					.logo-box {
 						img {
+							height: 30px;
 							width: 150px;
 							cursor: pointer;
 						}
@@ -80,10 +81,10 @@ body::-webkit-scrollbar {
 						div {
 							position: relative;
 							color: black;
-							font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+							font-family: $font;
 							font-size: 15px;
 							font-style: normal;
-							font-weight: 600;
+							font-weight: 300;
 							line-height: normal;
 							cursor: pointer;
 							.community_menu {
@@ -116,11 +117,10 @@ body::-webkit-scrollbar {
 						justify-content: flex-end;
 						.join-box {
 							width: 184px;
-							height: 40px;
+							height: 35px;
 							display: flex;
 							align-items: center;
 							justify-content: center;
-							// border-radius: 60px;
 							border: 1px solid green;
 							cursor: pointer;
 							svg {
@@ -129,11 +129,10 @@ body::-webkit-scrollbar {
 							}
 							span {
 								font-family: $font;
-								font-size: 14px;
+								font-size: 15px;
 								font-style: normal;
-								font-weight: 600;
+								font-weight: 390;
 								line-height: normal;
-								// color: #ffffff;
 								color: green;
 							}
 						}
@@ -144,6 +143,7 @@ body::-webkit-scrollbar {
 								border-radius: 50%;
 								object-fit: cover;
 								color: green;
+
 							}
 						}
 					}
@@ -177,7 +177,7 @@ body::-webkit-scrollbar {
 	.header-main {
 		position: relative;
 		width: 100%;
-		height: 760px;
+		height: 650px;
 		background-image: url('/img/banner/headerM.jpg');
 		background-size: cover;
 		display: flex;
@@ -197,10 +197,10 @@ body::-webkit-scrollbar {
 				height: 85px;
 				display: flex;
 				flex-direction: row;
-				justify-content: space-around;
-				// background: rgba(255, 255, 255, 0.28);
+				justify-content: space-evenly;
 				border-radius: 8px;
 				background-color: rgba(9, 120, 9, 0.5);
+				gap: 5px;
 				.select-box {
 					width: 712px;
 					display: flex;
@@ -269,7 +269,6 @@ body::-webkit-scrollbar {
 						align-items: center;
 						justify-content: center;
 						border-radius: 55px;
-						// background: #f17742;
 						background: white;
 						cursor: pointer;
 						svg {
@@ -337,14 +336,16 @@ body::-webkit-scrollbar {
 				.filter-type {
 					position: absolute;
 					padding: 50px;
-					width: 1094px;
-					min-height: 120px;
+					width: 400px;
+					min-height: 50px;
 					height: auto;
 					top: 96px;
-					right: 0px;
+					right: 380px;
 					display: flex;
 					flex-direction: row;
 					justify-content: space-between;
+					text-align: center;
+					align-items: center;
 					visibility: hidden;
 					border-radius: 12px;
 					background: #fff;
@@ -359,7 +360,7 @@ body::-webkit-scrollbar {
 					div {
 						position: relative;
 						width: 272px;
-						height: 168px;
+						height: 50px;
 						border-radius: 15px;
 						cursor: pointer;
 						background-size: cover;
@@ -372,7 +373,7 @@ body::-webkit-scrollbar {
 							font-family: $font;
 							font-size: 20px;
 							font-style: normal;
-							font-weight: 700;
+							font-weight: 400;
 							line-height: 26px;
 							background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
 							// -webkit-background-clip: text;
@@ -389,10 +390,9 @@ body::-webkit-scrollbar {
 					height: auto;
 					top: 96px;
 					right: 0px;
-					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					align-items: center;
+					display: grid;
+					grid-template-columns: repeat(3, 1fr); 
+
 					visibility: hidden;
 					border-radius: 12px;
 					background: #fff;
@@ -672,165 +672,440 @@ body::-webkit-scrollbar {
 
 	#footer {
 		position: relative;
-		padding: 60px 0px 18px 0px;
+		padding: 60px 0 18px 0;
 		width: 100%;
 		height: auto;
 		display: flex;
+		justify-content: center;
+		background: linear-gradient(135deg, #f0f0f0, #e8e8e8); /* Light gradient for a modern touch */
+	}
+	
+	.footer-container {
+		width: 100%;
+		max-width: 1300px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+	
+	.main {
+		display: flex;
 		flex-direction: row;
-		background: #181a20;
-		.footer-container {
-			width: 1300px;
-			height: auto;
-			margin: 0 auto;
-			.main {
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				.left {
-					height: 360px;
-					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
-					.footer-box {
-						display: flex;
-						flex-direction: column;
-						.logo {
-							width: 128px;
-							height: 52px;
-							cursor: pointer;
-						}
-						span {
-							color: #bebdbd;
-							font-family: $font;
-							font-size: 14px;
-							font-style: normal;
-							font-weight: 400;
-							text-transform: capitalize;
-						}
-						p {
-							color: #fff;
-							font-family: $font;
-							font-size: 15px;
-							font-style: normal;
-							font-weight: 600;
-							line-height: normal;
-							text-transform: capitalize;
-						}
-						.media-box {
-							margin-top: 12px;
-							color: #929495;
-							svg {
-								font-size: 32px;
-								margin-right: 22px;
-								cursor: pointer;
-							}
-						}
-					}
-				}
-				.right {
-					display: flex;
-					flex-direction: column;
-					.top {
-						display: flex;
-						flex-direction: column;
-						strong {
-							color: #fff;
-							font-family: $font;
-							font-size: 15px;
-							font-style: normal;
-							font-weight: 600;
-							line-height: normal;
-							text-transform: capitalize;
-						}
-						div {
-							padding: 20px 30px;
-							margin-top: 20px;
-							width: 667px;
-							height: 70px;
-							display: flex;
-							flex-direction: row;
-							align-items: center;
-							box-sizing: border-box;
-							border-radius: 12px;
-							background: #212329;
-							input {
-								margin-right: 10px;
-								width: 85%;
-								border: none;
-								outline: none;
-								color: #fff;
-								font-family: $font;
-								font-size: 14px;
-								font-style: normal;
-								font-weight: 400;
-								line-height: 26px;
-								background: none;
-							}
-							span {
-								color: #fff;
-								font-family: $font;
-								font-size: 15px;
-								font-style: normal;
-								font-weight: 600;
-								line-height: normal;
-								cursor: pointer;
-							}
-						}
-					}
-					.bottom {
-						margin-top: 60px;
-						display: flex;
-						flex-direction: row;
-						justify-content: space-between;
-						div {
-							display: flex;
-							flex-direction: column;
-							strong {
-								margin-bottom: 3px;
-								color: #fff;
-								font-family: $font;
-								font-size: 15px;
-								font-style: normal;
-								font-weight: 600;
-								line-height: normal;
-								text-transform: capitalize;
-							}
-							span {
-								margin-top: 25px;
-								color: #bebdbd;
-								font-family: $font;
-								font-size: 14px;
-								font-style: normal;
-								font-weight: 400;
-								cursor: pointer;
-								&:hover {
-									color: #ffffff;
-									text-decoration-line: underline;
-								}
-							}
-						}
-					}
-				}
-			}
-			.second {
-				margin-top: 60px;
-				height: 45px;
-				border-top: 1px solid #212329;
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: flex-end;
-				span {
-					color: #bebdbd;
-					font-family: $font;
-					font-size: 14px;
-					font-style: normal;
-					font-weight: 400;
-					line-height: normal;
-				}
-			}
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+	
+	.left, .right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+	
+	.footer-box {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	
+	.footer-box .logo {
+		width: 150px;
+		height: auto;
+		cursor: pointer;
+	}
+	
+	.footer-box span {
+		color: #606060;
+		font-size: 14px;
+		text-transform: capitalize;
+	}
+	
+	.footer-box p {
+		color: #333;
+		font-size: 15px;
+		font-weight: 600;
+		text-transform: capitalize;
+	}
+	
+	.media-box {
+		display: flex;
+		gap: 15px;
+		margin-top: 10px;
+	}
+	
+	.media-box svg {
+		font-size: 24px;
+		color: #606060;
+		cursor: pointer;
+		transition: color 0.3s;
+	}
+	
+	.media-box svg:hover {
+		color: #000;
+	}
+	
+	.right .top {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+	
+	.right .top strong {
+		color: #333;
+		font-size: 16px;
+		font-weight: 600;
+	}
+	
+	.right .top div {
+		display: flex;
+		gap: 10px;
+		padding: 15px;
+		border-radius: 8px;
+		background: #f9f9f9; 
+	}
+	
+	.right .top input {
+		flex: 1;
+		padding: 10px;
+		border: none;
+		outline: none;
+		background: none;
+		color: #333;
+		font-size: 14px;
+	}
+	
+	.right .top span {
+		background: #333;
+		color: #fff;
+		padding: 8px 15px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background 0.3s;
+	}
+	
+	.right .top span:hover {
+		background: #555;
+	}
+	
+	.bottom {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		gap: 20px;
+	}
+	
+	.bottom div {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	
+	.bottom div strong {
+		font-size: 15px;
+		font-weight: 600;
+		color: #333;
+	}
+	
+	.bottom div span {
+		font-size: 14px;
+		color: #606060;
+		cursor: pointer;
+		transition: color 0.3s;
+	}
+	
+	.bottom div span:hover {
+		color: #333;
+		text-decoration: underline;
+	}
+	
+	.second {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 15px;
+		border-top: 1px solid #dcdcdc; 
+	}
+	
+	.second span {
+		font-size: 14px;
+		color: #606060;
+	}
+	
+	.main {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+	
+	.left, .right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+	
+	.footer-box {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	
+	.footer-logo {
+		height: 70px;
+		width: 300px;
+	}
+
+	.footer-img {
+		height: 60px;
+		width: 250px;
+	}
+
+	.footer-box span {
+		color: #606060;
+		font-size: 14px;
+		text-transform: capitalize;
+	}
+	
+	.footer-box p {
+		color: #333;
+		font-size: 15px;
+		font-weight: 600;
+		text-transform: capitalize;
+	}
+	
+	.media-box {
+		display: flex;
+		gap: 15px;
+		margin-top: 10px;
+		svg {
+			font-size: 24px;
+			color: #606060;
+			cursor: pointer;
+			transition: color 0.3s;
+		}
+		svg:hover {
+			color: #000;
 		}
 	}
+	
+	.right .top {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+	
+	.right .top strong {
+		color: #333;
+		font-size: 16px;
+		font-weight: 600;
+	}
+	
+	.right .top div {
+		display: flex;
+		gap: 10px;
+		padding: 15px;
+		border-radius: 8px;
+		background: #eaeaea;
+	}
+	
+	.right .top input {
+		flex: 1;
+		padding: 10px;
+		border: none;
+		outline: none;
+		background: none;
+		color: #333;
+		font-size: 14px;
+	}
+	
+	.right .top span {
+		background: #333;
+		color: #fff;
+		padding: 8px 15px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background 0.3s;
+	}
+	
+	.right .top span:hover {
+		background: #555;
+	}
+	
+	.bottom {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		gap: 20px;
+	}
+	
+	.bottom div {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	
+	.bottom div strong {
+		font-size: 15px;
+		font-weight: 600;
+		color: #333;
+	}
+	
+	.bottom div span {
+		font-size: 14px;
+		color: #606060;
+		cursor: pointer;
+		transition: color 0.3s;
+	}
+	
+	.bottom div span:hover {
+		color: #333;
+		text-decoration: underline;
+	}
+	
+	.second {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 15px;
+		border-top: 1px solid #eaeaea;
+	}
+	
+	.second span {
+		font-size: 14px;
+		color: #606060;
+	}
+	
+	  
+	  .footer-container {
+		max-width: 1200px;
+		margin: 0 auto;
+	  }
+	  
+	  .main {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+		justify-content: space-between;
+	  }
+	  
+	  .left, .right {
+		flex: 1;
+		min-width: 300px;
+	  }
+	  
+	  .footer-box {
+		margin-bottom: 20px;
+	  }
+	  
+	  .footer-box .logo {
+		width: 150px;
+	  }
+	  
+	  .footer-box span,
+	  .footer-box p {
+		color: #6c757d;
+		font-size: 14px;
+		line-height: 1.5;
+	  }
+	  
+	  .media-box svg {
+		font-size: 28px;
+		margin-right: 15px;
+		color: #6c757d;
+		transition: color 0.3s ease;
+	  }
+	  
+	  .media-box svg:hover {
+		color: #007bff;
+	  }
+	  
+	  .right .top {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 40px;
+	  }
+	  
+	  .right .top div {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		background: #f1f3f5;
+		padding: 10px 15px;
+		border-radius: 8px;
+	  }
+	  
+	  .right .top input {
+		border: none;
+		background: none;
+		flex: 1;
+		padding: 5px 10px;
+		font-size: 14px;
+	  }
+	  
+	  .right .top span {
+		background: green;
+		color: #fff;
+		padding: 5px 15px;
+		border-radius: 5px;
+		cursor: pointer;
+		font-weight: 500;
+		transition: background 0.3s ease;
+	  }
+	  
+	  .right .top span:hover {
+		background: #0056b3;
+	  }
+	  
+	  .right .bottom {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+	  }
+	  
+	  .right .bottom div {
+		min-width: 150px;
+	  }
+	  
+	  .right .bottom strong {
+		font-size: 15px;
+		color: #343a40;
+		margin-bottom: 10px;
+		display: block;
+	  }
+	  
+	  .right .bottom span {
+		color: #6c757d;
+		font-size: 14px;
+		cursor: pointer;
+		display: block;
+		margin-top: 10px;
+		transition: color 0.3s ease;
+	  }
+	  
+	  .right .bottom span:hover {
+		color: #007bff;
+	  }
+	  
+	  .second {
+		border-top: 1px solid #e9ecef;
+		margin-top: 40px;
+		padding-top: 20px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	  }
+	  
+	  .second span {
+		font-size: 13px;
+		color: #6c757d;
+	  }
+	  
 }
 
 .MuiPaper-root.MuiMenu-paper {
@@ -1039,7 +1314,8 @@ body::-webkit-scrollbar {
 			width: 185px;
 			height: 54px;
 			border-radius: 12px;
-			background: linear-gradient(90deg, #e8543e 0%, #ec6b57 100%);
+			// background: linear-gradient(90deg, #e8543e 0%, #ec6b57 100%);
+			background: green;
 			color: #fff;
 			font-family: $font;
 			font-size: 14px;

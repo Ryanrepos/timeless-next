@@ -385,6 +385,52 @@ query GetVisited($input: OrdinaryInquiry!) {
  *      BOARD-ARTICLE     *
  *************************/
 
+export const GET_BOARD_ARTICLE = gql`
+	query GetBoardArticle($input: String!) {
+		getBoardArticle(articleId: $input) {
+			_id
+			articleCategory
+			articleStatus
+			articleTitle
+			articleContent
+			articleImage
+			articleViews
+			articleLikes
+			articleComments
+			memberId
+			createdAt
+			updatedAt
+			memberData {
+				_id
+				memberType
+				memberStatus
+				memberAuthType
+				memberPhone
+				memberNick
+				memberFullName
+				memberImage
+				memberAddress
+				memberDesc
+				memberWarnings
+				memberBlocks
+				memberProperties
+				memberRank
+				memberPoints
+				memberLikes
+				memberViews
+				deletedAt
+				createdAt
+				updatedAt
+			}
+			meLiked {
+				memberId
+				likeRefId
+				myFavorite
+			}
+		}
+	}
+`;
+
 export const GET_BOARD_ARTICLES = gql`
 query GetBoardArticles($input: BoardArticlesInquiry!) {
     getBoardArticles(input: $input) {

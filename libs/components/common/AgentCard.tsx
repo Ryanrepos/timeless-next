@@ -45,11 +45,14 @@ const AgentCard = (props: AgentCardProps) => {
 							backgroundRepeat: 'no-repeat',
 						}}
 					>
-						<div>{agent?.memberProperties} properties</div>
 					</Box>
 				</Link>
 
+				<div className={"agent-property"}>{agent?.memberProperties} properties</div>
+
+
 				<Stack className={'agent-desc'}>
+
 					<Box component={'div'} className={'agent-info'}>
 						<Link
 							href={{

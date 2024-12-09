@@ -16,7 +16,7 @@ const CommunityCard = (props: CommunityCardProps) => {
 	const device = useDeviceDetect();
 	const articleImage = article?.articleImage
 		? `${process.env.REACT_APP_API_URL}/${article?.articleImage}`
-		: '/img/event.svg';
+		: '/img/event.jpg';
 
 	if (device === 'mobile') {
 		return <div>COMMUNITY CARD (MOBILE)</div>;
@@ -26,7 +26,6 @@ const CommunityCard = (props: CommunityCardProps) => {
 				<Link href={`/community/detail?articleCategory=${article?.articleCategory}&id=${article?._id}`}>
 					<Box component={'div'} className={'vertical-card'}>
 						<div className={'community-img'} style={{ backgroundImage: `url(${articleImage})` }}>
-							<div>{index + 1}</div>
 						</div>
 						<strong>{article?.articleTitle}</strong>
 						<span>Free Board</span>
@@ -42,7 +41,7 @@ const CommunityCard = (props: CommunityCardProps) => {
 							<div>
 								<strong>{article.articleTitle}</strong>
 								<span>
-									<Moment format="DD.MM.YY">{article?.createdAt}</Moment>
+									<Moment format="DD.MM.YY">{ article?.createdAt}</Moment>
 								</span>
 							</div>
 						</Box>

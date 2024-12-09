@@ -13,6 +13,7 @@ import { GET_PROPERTIES } from '../../../apollo/user/query';
 import { T } from '../../types/common';
 import { useQuery } from '@apollo/client';
 
+
 interface PopularPropertiesProps {
 	initialInput: PropertiesInquiry;
 }
@@ -46,7 +47,7 @@ const PopularProperties = (props: PopularPropertiesProps) => {
 			<Stack className={'popular-properties'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Popular properties</span>
+						<span>Popular Watches</span>
 					</Stack>
 					<Stack className={'card-box'}>
 						<Swiper
@@ -74,15 +75,15 @@ const PopularProperties = (props: PopularPropertiesProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
-							<span>Popular properties</span>
-							<p>Popularity is based on views</p>
+							<span>Popular Watches</span>
+							<p>Category is based on views</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
 							<div className={'more-box'}>
 								<Link href={'/property'}>
-									<span>See All Categories</span>
+									<span>See all</span>
 								</Link>
-								<img src="/img/icons/rightup.svg" alt="" />
+								<img src="/img/icons/show.png" alt="" />
 							</div>
 						</Box>
 					</Stack>
@@ -114,6 +115,7 @@ const PopularProperties = (props: PopularPropertiesProps) => {
 						<div className={'swiper-popular-pagination'}></div>
 						<EastIcon className={'swiper-popular-next'} />
 					</Stack>
+					
 				</Stack>
 			</Stack>
 		);
@@ -123,7 +125,7 @@ const PopularProperties = (props: PopularPropertiesProps) => {
 PopularProperties.defaultProps = {
 	initialInput: {
 		page: 1,
-		limit: 7,
+		limit: 8,
 		sort: 'propertyViews',
 		direction: 'DESC',
 		search: {},

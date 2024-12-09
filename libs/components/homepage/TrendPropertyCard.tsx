@@ -39,7 +39,7 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 						pushDetailHandler(property._id)
 					}}
 				>
-					<div>${property.propertyPrice}</div>
+					<div className={"price-label"}>${property.propertyPrice}</div>
 				</Box>
 				<Box component={'div'} className={'info'}>
 					<strong className={'title'} onClick={() => {
@@ -48,23 +48,19 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 					<p className={'desc'}>{property.propertyDesc ?? 'no description'}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property.propertyBeds} bed</span>
+							<img src="/img/icons/label.png" alt="" />
+							<span>{property.propertyBrand}</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property.propertyRooms} rooms</span>
-						</div>
-						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property.propertySquare} m2</span>
+							<img src="/img/icons/location1.png" alt="" />
+							<span>{property.propertyLocation}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
 						<p>
-							{property.propertyRent ? 'Rent' : ''} {property.propertyRent && property.propertyBarter && '/'}{' '}
-							{property.propertyBarter ? 'Barter' : ''}
+							{property.propertyNew ? 'New' : ''} {property.propertyNew && property.propertyNew && '/'}{' '}
+							{property.propertyWorn ? 'Worn' : ''}
 						</p>
 						<div className="view-like-box">
 							<IconButton color={'default'}>
@@ -86,59 +82,61 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 		);
 	} else {
 		return (
-			<Stack className="trend-card-box" key={property._id}>
-				<Box
-					component={'div'}
-					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
-					onClick={() => {
-						pushDetailHandler(property._id)
-					}}
-				>
-					<div>${property.propertyPrice}</div>
+		
+			<Stack className="trend-card-box" key={property._id} direction="row">
+			<Box
+			  className="card-img"
+			  style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
+			  onClick={() => pushDetailHandler(property._id)}
+			>
+			  <div className="price-badge">${property.propertyPrice}</div>
+			</Box>
+			<Box className="info">
+			  <Typography
+				className="title"
+				variant="h6"
+				onClick={() => pushDetailHandler(property._id)}
+			  >
+				{property.propertyTitle}
+			  </Typography>
+			  <Typography className="desc">
+				Category - {property.propertyCategory ?? 'No description available'}
+			  </Typography>
+			  <Box className="options">
+				<Box className="option-item">
+				  <img src="/img/icons/label.png" alt="Brand" />
+				  <span>{property.propertyBrand}</span>
 				</Box>
-				<Box component={'div'} className={'info'}>
-					<strong className={'title'} onClick={() => {
-						pushDetailHandler(property._id)
-					}}>{property.propertyTitle}</strong>
-					<p className={'desc'}>{property.propertyDesc ?? 'no description'}</p>
-					<div className={'options'}>
-						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property.propertyBeds} bed</span>
-						</div>
-						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property.propertyRooms} rooms</span>
-						</div>
-						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property.propertySquare} m2</span>
-						</div>
-					</div>
-					<Divider sx={{ mt: '15px', mb: '17px' }} />
-					<div className={'bott'}>
-						<p>
-							{property.propertyRent ? 'Rent' : ''} {property.propertyRent && property.propertyBarter && '/'}{' '}
-							{property.propertyBarter ? 'Barter' : ''}
-						</p>
-						<div className="view-like-box">
-							<IconButton color={'default'}>
-								<RemoveRedEyeIcon />
-							</IconButton>
-							<Typography className="view-cnt">{property?.propertyViews}</Typography>
-							<IconButton color={'default'} onClick={() => likePropertyHandler(user, property?._id)}>
-								{property?.meLiked && property?.meLiked[0]?.myFavorite ? (
-									<FavoriteIcon style={{ color: 'red' }} />
-								) : (
-									<FavoriteIcon />
-								)}
-							</IconButton>
-							<Typography className="view-cnt">{property?.propertyLikes}</Typography>
-						</div>
-					</div>
+				<Box className="option-item">
+				  <img src="/img/icons/location1.png" alt="Location" />
+				  <span>{property.propertyLocation}</span>
 				</Box>
-			</Stack>
+			  </Box>
+			  <Divider sx={{ my: '15px' }} />
+			  <Box className="bott">
+				<Typography variant="body2" className="condition">
+				  {property.propertyNew ? 'New' : ''} {property.propertyNew && property.propertyWorn && '/'}{' '}
+				  {property.propertyWorn ? 'Worn' : ''}
+				</Typography>
+				<Box className="view-like-box">
+				  <IconButton color={'default'}>
+					<RemoveRedEyeIcon />
+				  </IconButton>
+				  <Typography className="view-cnt">{property?.propertyViews}</Typography>
+				  <IconButton color={'default'} onClick={() => likePropertyHandler(user, property?._id)}>
+					{property?.meLiked && property?.meLiked[0]?.myFavorite ? (
+					  <FavoriteIcon style={{ color: 'red' }} />
+					) : (
+					  <FavoriteIcon />
+					)}
+				  </IconButton>
+				  <Typography className="view-cnt">{property?.propertyLikes}</Typography>
+				</Box>
+			  </Box>
+			</Box>
+		  </Stack>
+		  
+		  
 		);
 	}
 };

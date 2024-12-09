@@ -1,13 +1,50 @@
-export enum PropertyType {
-	APARTMENT = 'APARTMENT',
-	VILLA = 'VILLA',
-	HOUSE = 'HOUSE',
+// export enum PropertyType {
+// 	APARTMENT = 'APARTMENT',
+// 	VILLA = 'VILLA',
+// 	HOUSE = 'HOUSE',
+// }
+
+// export enum PropertyStatus {
+// 	ACTIVE = 'ACTIVE',
+// 	SOLD = 'SOLD',
+// 	DELETE = 'DELETE',
+// }
+
+// export enum PropertyLocation {
+// 	SEOUL = 'SEOUL',
+// 	BUSAN = 'BUSAN',
+// 	INCHEON = 'INCHEON',
+// 	DAEGU = 'DAEGU',
+// 	GYEONGJU = 'GYEONGJU',
+// 	GWANGJU = 'GWANGJU',
+// 	CHONJU = 'CHONJU',
+// 	DAEJON = 'DAEJON',
+// 	JEJU = 'JEJU',
+// }
+
+export enum PropertyCategory {
+	MEN = 'MEN',
+    WOMEN = 'WOMEN',
+    UNISEX = 'UNISEX',
 }
 
 export enum PropertyStatus {
 	ACTIVE = 'ACTIVE',
 	SOLD = 'SOLD',
 	DELETE = 'DELETE',
+}
+
+export enum PropertyBrand {
+	ROLEX = 'ROLEX',
+	PATEK_PHILIPPE = 'PATEK_PHILIPPE',
+	AUDEMARS_PIGUET = 'AUDEMARS_PIGUET',
+	VACHERON_CONSTANTIN = 'VACHERON_CONSTANTIN',
+	RICHARD_MILLE = 'RICHARD_MILLE',
+	JAEGER_LECOULTRE = 'JAEGER_LECOULTRE',
+	CARTIER = 'CARTIER',
+	HUBLOT = 'HUBLOT',
+	OMEGA = 'OMEGA',
+	BREITLING = 'BREITLING',  
 }
 
 export enum PropertyLocation {
@@ -21,3 +58,4 @@ export enum PropertyLocation {
 	DAEJON = 'DAEJON',
 	JEJU = 'JEJU',
 }
+

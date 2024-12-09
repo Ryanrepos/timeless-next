@@ -17,6 +17,9 @@ import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../apollo/store';
 import { Logout } from '@mui/icons-material';
 import { REACT_APP_API_URL } from '../config';
+import MenuIcon from '@mui/icons-material/Menu'; // For the burger icon
+import CloseIcon from '@mui/icons-material/Close'; // For the close button
+import Image from 'next/image'; 
 
 const Top = () => {
 	const device = useDeviceDetect();
@@ -57,6 +60,11 @@ const Top = () => {
 		const jwt = getJwtToken();
 		if (jwt) updateUserInfo(jwt);
 	}, []);
+
+	// MOBILE
+	const [menuOpen, setMenuOpen] = useState(false);
+	const toggleMenu = () => setMenuOpen(!menuOpen);
+
 
 	/** HANDLERS **/
 	const langClick = (e: any) => {
@@ -141,24 +149,53 @@ const Top = () => {
 
 	if (device == 'mobile') {
 		return (
-			<Stack className={'top'}>
-				<Link href={'/'}>
-					<div>{t('Home')}</div>
+			<div className="mobile-navbar">
+			  {/* Navbar */}
+			  <Stack className="navbar-top">
+				<Link href="/">
+				  <Image
+					src="/img/logo/banner.png" // Replace with your logo file path
+					alt="Logo"
+					width={180}
+					height={40}
+					className="logo"
+				  />
 				</Link>
-				<Link href={'/property'}>
-					<div>{t('Properties')}</div>
-				</Link>
-				<Link href={'/agent'}>
-					<div> {t('Agents')} </div>
-				</Link>
-				<Link href={'/community?articleCategory=FREE'}>
-					<div> {t('Community')} </div>
-				</Link>
-				<Link href={'/cs'}>
-					<div> {t('CS')} </div>
-				</Link>
-			</Stack>
-		);
+				<MenuIcon onClick={toggleMenu} className="burger-icon" />
+			  </Stack>
+		
+			  {/* Popup Menu */}
+			  {menuOpen && (
+				<div className="menu-popup">
+				  <div className="menu-header">
+					<CloseIcon onClick={toggleMenu} className="close-icon" />
+				  </div>
+				  <div className="menu-links">
+					<Link href="/">
+					  <div>Home</div>
+					</Link>
+					<Link href="/property">
+					  <div>Properties</div>
+					</Link>
+					<Link href="/agent">
+					  <div>Agents</div>
+					</Link>
+					<Link href="/community?articleCategory=FREE">
+					  <div>Blogs</div>
+					</Link>
+					{user?._id && (
+								<Link href={'/mypage'}>
+									<div> {t('My Page')} </div>
+								   </Link>
+					)}
+					<Link href="/cs">
+					  <div>Notice</div>
+					</Link>
+				  </div>
+				</div>
+			  )}
+			</div>
+		  );
 	} else {
 		return (
 			<Stack className={'navbar'}>
@@ -174,13 +211,13 @@ const Top = () => {
 								<div>{t('Home')}</div>
 							</Link>
 							<Link href={'/property'}>
-								<div>{t('Properties')}</div>
+								<div>{t('Watches')}</div>
 							</Link>
 							<Link href={'/agent'}>
 								<div> {t('Agents')} </div>
 							</Link>
 							<Link href={'/community?articleCategory=FREE'}>
-								<div> {t('Community')} </div>
+								<div> {t('Blogs')} </div>
 							</Link>
 							{user?._id && (
 								<Link href={'/mypage'}>
@@ -188,7 +225,7 @@ const Top = () => {
 								</Link>
 							)}
 							<Link href={'/cs'}>
-								<div> {t('CS')} </div>
+								<div> {t('Notice')} </div>
 						    </Link>				
 						</Box>
 						<Box component={'div'} className={'user-box'}>
@@ -212,7 +249,7 @@ const Top = () => {
 										}}
 										sx={{ mt: '5px' }}
 									>
-										<MenuItem onClick={() => logOut()}>
+										<MenuItem className={"menu-item"} onClick={() => logOut()}>
 											<Logout fontSize="small" style={{ color: 'blue', marginRight: '10px' }} />
 											Logout
 										</MenuItem>
@@ -223,7 +260,7 @@ const Top = () => {
 									<div className={'join-box'}>
 										<AccountCircleOutlinedIcon />
 										<span>
-											{t('Login')} / {t('Register')}
+											{t('Login')}
 										</span>
 									</div>
 								</Link>

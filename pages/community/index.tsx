@@ -114,44 +114,6 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 				<div className="container">
 					<TabContext value={searchCommunity.search.articleCategory}>
 						<Stack className="main-box">
-							<Stack className="left-config">
-								<Stack className={'image-info'}>
-									<img src={'/img/logo/logoText.svg'} />
-									<Stack className={'community-name'}>
-										<Typography className={'name'}>Timeless Community</Typography>
-									</Stack>
-								</Stack>
-
-								<TabList
-									orientation="vertical"
-									aria-label="lab API tabs example"
-									TabIndicatorProps={{
-										style: { display: 'none' },
-									}}
-									onChange={tabChangeHandler}
-								>
-									<Tab
-										value={'FREE'}
-										label={'Free Board'}
-										className={`tab-button ${searchCommunity.search.articleCategory == 'FREE' ? 'active' : ''}`}
-									/>
-									<Tab
-										value={'RECOMMEND'}
-										label={'Recommendation'}
-										className={`tab-button ${searchCommunity.search.articleCategory == 'RECOMMEND' ? 'active' : ''}`}
-									/>
-									<Tab
-										value={'NEWS'}
-										label={'News'}
-										className={`tab-button ${searchCommunity.search.articleCategory == 'NEWS' ? 'active' : ''}`}
-									/>
-									<Tab
-										value={'HUMOR'}
-										label={'Humor'}
-										className={`tab-button ${searchCommunity.search.articleCategory == 'HUMOR' ? 'active' : ''}`}
-									/>
-								</TabList>
-							</Stack>
 							<Stack className="right-config">
 								<Stack className="panel-config">
 									<Stack className="title-box">
@@ -244,6 +206,44 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 										</Stack>
 									</TabPanel>
 								</Stack>
+							</Stack>
+							<Stack className="left-config">
+								<Stack className={'image-info'}>
+									<img src={'/img/logo/logoText.png'} />
+									<Stack className={'community-name'}>
+										<Typography className={'name'}>Choose the category</Typography>
+									</Stack>
+								</Stack>
+
+								<TabList className={"tablist"}
+									orientation="vertical"
+									aria-label="lab API tabs example"
+									TabIndicatorProps={{
+										style: { display: 'none' },
+									}}
+									onChange={tabChangeHandler}
+								>
+									<Tab
+										value={'FREE'}
+										label={'Free Board'}
+										className={`tab-button ${searchCommunity.search.articleCategory == 'FREE' ? 'active' : ''}`}
+									/>
+									<Tab
+										value={'RECOMMEND'}
+										label={'Recommendation'}
+										className={`tab-button ${searchCommunity.search.articleCategory == 'RECOMMEND' ? 'active' : ''}`}
+									/>
+									<Tab
+										value={'NEWS'}
+										label={'News'}
+										className={`tab-button ${searchCommunity.search.articleCategory == 'NEWS' ? 'active' : ''}`}
+									/>
+									<Tab
+										value={'HUMOR'}
+										label={'Humor'}
+										className={`tab-button ${searchCommunity.search.articleCategory == 'HUMOR' ? 'active' : ''}`}
+									/>
+								</TabList>
 							</Stack>
 						</Stack>
 					</TabContext>

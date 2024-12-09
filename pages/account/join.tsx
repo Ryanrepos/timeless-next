@@ -73,7 +73,7 @@ const Join: NextPage = () => {
 						<Stack className={'left'}>
 							{/* @ts-ignore */}
 							<Box className={'logo'}>
-								<img src="/img/logo/logoText.svg" alt="" />
+								<img src="/img/logo/logoText.png" alt="" />
 								<span>Timeless</span>
 							</Box>
 							<Box className={'info'}>
@@ -206,7 +206,7 @@ const Join: NextPage = () => {
 								)}
 							</Box>
 						</Stack>
-						<Stack className={'right'}></Stack>
+						{/* <Stack className={'right'}></Stack> */}
 					</Stack>
 				</Stack>
 			</Stack>
@@ -215,3 +215,5 @@ const Join: NextPage = () => {
 };
 
 export default withLayoutBasic(Join);
+
+

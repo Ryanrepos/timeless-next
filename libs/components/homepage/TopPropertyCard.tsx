@@ -49,24 +49,20 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 					<p className={'desc'}>{property?.propertyAddress}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property?.propertyBeds} bed</span>
+							<img src="/img/icons/label.png" alt="" />
+							<span>{property?.propertyBrand}</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property?.propertyRooms} rooms</span>
-						</div>
-						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertySquare} m2</span>
+							<img src="/img/icons/location1.png" alt="" />
+							<span>{property?.propertyLocation}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
 						<p>
 							{' '}
-							{property.propertyRent ? 'Rent' : ''} {property.propertyRent && property.propertyBarter && '/'}{' '}
-							{property.propertyBarter ? 'Barter' : ''}
+							{property.propertyWorn ? 'Worn' : ''} {property.propertyWorn && property.propertyWorn && '/'}{' '}
+							{property.propertyNew ? 'New' : ''}
 						</p>
 						<div className="view-like-box">
 							<IconButton color={'default'}>
@@ -97,7 +93,7 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 						pushDetailHandler(property._id)
 					}}
 				>
-					<div>${property?.propertyPrice}</div>
+					<div className={"priceTag"}>${property?.propertyPrice}</div>
 				</Box>
 				<Box component={'div'} className={'info'}>
 					<strong className={'title'}
@@ -108,24 +104,20 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 					<p className={'desc'}>{property?.propertyAddress}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property?.propertyBeds} bed</span>
+							<img src="/img/icons/label.png" alt="" />
+							<span>{property?.propertyBrand}</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property?.propertyRooms} rooms</span>
-						</div>
-						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertySquare} m2</span>
+							<img src="/img/icons/location1.png" alt="" />
+							<span>{property?.propertyLocation}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
-						<p>
+						<p className={"newLabel"}>
 							{' '}
-							{property.propertyRent ? 'Rent' : ''} {property.propertyRent && property.propertyBarter && '/'}{' '}
-							{property.propertyBarter ? 'Barter' : ''}
+							{property.propertyNew ? 'Worn' : ''} {property.propertyNew && property.propertyNew && '/'}{' '}
+							{property.propertyNew ? 'New' : ''}
 						</p>
 						<div className="view-like-box">
 							<IconButton color={'default'}>

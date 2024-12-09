@@ -10,6 +10,8 @@ import TopProperties from '../libs/components/homepage/TopProperties';
 import { Stack } from '@mui/material';
 import Advertisement from '../libs/components/homepage/Advertisement';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import ReviewCard from '../libs/components/agent/ReviewCard';
+import ReviewsSection from '../libs/components/homepage/Events';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -23,24 +25,52 @@ const Home: NextPage = () => {
 	if (device === 'mobile') {
 		return (
 			<Stack className={'home-page'}>
+			<div data-aos="fade-up">
 				<TrendProperties />
+			</div>
+			<div data-aos="fade-up">
 				<PopularProperties />
+			</div>
+			<div data-aos="fade-up">
 				<Advertisement />
+			</div>
+			<div data-aos="fade-up">
 				<TopProperties />
+			</div>
+			<div data-aos="fade-up">
 				<TopAgents />
+			</div>
+			<div data-aos="fade-up">
+				<ReviewsSection />
+			</div>
 			</Stack>
 		);
 	} else {
 		return (
 			<Stack className={'home-page'}>
+			<div data-aos="fade-up">
 				<TrendProperties />
+			</div>
+			<div data-aos="fade-up">
 				<PopularProperties />
+			</div>
+			<div data-aos="fade-up">
 				<Advertisement />
+			</div>
+			<div data-aos="fade-up">
 				<TopProperties />
+			</div>
+			<div data-aos="fade-up">
 				<TopAgents />
-				<Events />
+			</div>
+			<div data-aos="fade-up">
+				<ReviewsSection />
+			</div>
+			<div data-aos="fade-up">
 				<CommunityBoards />
+			</div>
 			</Stack>
+
 		);
 	}
 };

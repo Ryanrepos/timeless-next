@@ -73,7 +73,7 @@ const CommunityBoards = () => {
 			<Stack className={'community-board'}>
 				<Stack className={'container'}>
 					<Stack>
-						<Typography variant={'h1'}>COMMUNITY BOARD HIGHLIGHTS</Typography>
+						<Typography variant={'h1'}>Our Latest Blogs</Typography>
 					</Stack>
 					<Stack className="community-main">
 						<Stack className={'community-left'}>
@@ -81,7 +81,7 @@ const CommunityBoards = () => {
 								<Link href={'/community?articleCategory=NEWS'}>
 									<span>News</span>
 								</Link>
-								<img src="/img/icons/arrowBig.svg" alt="" />
+								<img style={{width: "20px", height: "20px"}} src="/img/icons/arrowTop.png" alt="" />
 							</Stack>
 							<Stack className={'card-wrap'}>
 								{newsArticles.map((article, index) => {
@@ -94,7 +94,7 @@ const CommunityBoards = () => {
 								<Link href={'/community?articleCategory=FREE'}>
 									<span>Free</span>
 								</Link>
-								<img src="/img/icons/arrowBig.svg" alt="" />
+								<img style={{width: "20px", height: "20px"}} src="/img/icons/arrowTop.png" alt="" />
 							</Stack>
 							<Stack className={'card-wrap vertical'}>
 								{freeArticles.map((article, index) => {

@@ -7,6 +7,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+
 		.container {
 			display: flex;
 			flex-direction: column;
@@ -22,10 +23,10 @@
 						padding: 22px 10px;
 						width: 333px;
 						height: 50px;
-						border-radius: 40px;
-						border: 1px solid #ddd;
+						// border-radius: 40px;
+						border: 1px solid green;
 						background: #fff;
-						color: #181a20;
+						color: green;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -38,9 +39,10 @@
 					display: flex;
 					flex-direction: row;
 					align-items: center;
+					justify-content: flex-end;
 					button {
 						margin-left: 10px;
-						color: #181a20;
+						color: green;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -61,6 +63,7 @@
 				display: flex;
 				flex-direction: row;
 				flex-wrap: wrap;
+
 			}
 			.pagination {
 				display: flex;
@@ -73,7 +76,7 @@
 					font-size: 14px;
 					font-style: normal;
 					font-weight: 400;
-					line-height: 26px; /* 185.714% */
+					line-height: 26px; 
 				}
 			}
 		}

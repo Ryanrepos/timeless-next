@@ -18,9 +18,9 @@
 						font-family: $font;
 						font-size: 30px;
 						font-style: normal;
-						font-weight: 600;
+						font-weight: 400;
 						line-height: normal;
-						letter-spacing: 0.6px;
+						letter-spacing: 0.1px;
 						text-transform: capitalize;
 					}
 					.sub-title {
@@ -39,9 +39,8 @@
 				margin-top: 35px;
 				gap: 25px;
 				border-radius: 12px;
-				border: 1px solid #c4c4c4;
 				background: #fff;
-				box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
+				box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
 				.photo-box {
 					gap: 23px;
 					.title {
@@ -89,9 +88,11 @@
 								align-items: center;
 								cursor: pointer;
 								border-radius: 12px;
-								border: 1px solid #181a20;
+								border: 1px solid green;
+								box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+
 								p {
-									color: #181a20;
+									color: green;
 									font-family: $font;
 									font-size: 13px;
 									font-style: normal;
@@ -202,9 +203,12 @@
 						align-self: flex-end;
 						margin-top: 30px;
 						border-radius: 12px;
-						background-color: #000000;
+						background-color: white;
+						border: 1px solid green;
+						box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+
 						p {
-							color: #fff;
+							color: green;
 							font-family: $font;
 							font-size: 13px;
 							font-style: normal;
@@ -213,7 +217,7 @@
 						}
 					}
 					button:disabled {
-						background: #181a2045;
+						background: white;
 					}
 				}
 			}

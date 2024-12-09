@@ -245,8 +245,8 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 					</Stack>
 					<Stack className={'review-box'}>
 						<Stack className={'main-intro'}>
-							<span>Reviews</span>
-							<p>we are glad to see you again</p>
+							<span>Customer Feedback</span>
+							<p>Thanks for stopping by again!</p>
 						</Stack>
 						{commentTotal !== 0 && (
 							<Stack className={'review-wrap'}>
@@ -272,8 +272,8 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 						)}
 
 						<Stack className={'leave-review-config'}>
-							<Typography className={'main-title'}>Leave A Review</Typography>
-							<Typography className={'review-title'}>Review</Typography>
+							<Typography className={'main-title'}>Share Your Thoughts</Typography>
+							<Typography className={'review-title'}>Your Experience</Typography>
 							<textarea
 								onChange={({ target: { value } }: any) => {
 									setInsertCommentData({ ...insertCommentData, commentContent: value });
