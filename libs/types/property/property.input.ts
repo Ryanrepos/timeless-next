@@ -22,10 +22,8 @@ interface PISearch {
 	categoryList?: PropertyCategory[];
 	brandList?: string[];
 	options?: string[];
-	// bedsList?: Number[];
 	pricesRange?: Range;
 	periodsRange?: PeriodsRange;
-	// squaresRange?: Range;
 	text?: string;
 }
 

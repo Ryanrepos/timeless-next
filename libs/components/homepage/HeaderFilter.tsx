@@ -167,37 +167,6 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 		[searchFilter],
 	);
 
-	// const propertyBedSelectHandler = useCallback(
-	// 	async (number: Number) => {
-	// 		try {
-	// 			if (number != 0) {
-	// 				if (searchFilter?.search?.bedsList?.includes(number)) {
-	// 					setSearchFilter({
-	// 						...searchFilter,
-	// 						search: {
-	// 							...searchFilter.search,
-	// 							bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
-	// 						},
-	// 					});
-	// 				} else {
-	// 					setSearchFilter({
-	// 						...searchFilter,
-	// 						search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
-	// 					});
-	// 				}
-	// 			} else {
-	// 				delete searchFilter?.search.bedsList;
-	// 				setSearchFilter({ ...searchFilter });
-	// 			}
-
-	// 			console.log('propertyBedSelectHandler:', number);
-	// 		} catch (err: any) {
-	// 			console.log('ERROR, propertyBedSelectHandler:', err);
-	// 		}
-	// 	},
-	// 	[searchFilter],
-	// );
-
 	const propertyOptionSelectHandler = useCallback(
 		async (e: any) => {
 			try {
@@ -227,33 +196,6 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 		},
 		[searchFilter],
 	);
-
-	// const propertySquareHandler = useCallback(
-	// 	async (e: any, type: string) => {
-	// 		const value = e.target.value;
-
-	// 		if (type == 'start') {
-	// 			setSearchFilter({
-	// 				...searchFilter,
-	// 				search: {
-	// 					...searchFilter.search,
-	// 					// @ts-ignore
-	// 					squaresRange: { ...searchFilter.search.squaresRange, start: parseInt(value) },
-	// 				},
-	// 			});
-	// 		} else {
-	// 			setSearchFilter({
-	// 				...searchFilter,
-	// 				search: {
-	// 					...searchFilter.search,
-	// 					// @ts-ignore
-	// 					squaresRange: { ...searchFilter.search.squaresRange, end: parseInt(value) },
-	// 				},
-	// 			});
-	// 		}
-	// 	},
-	// 	[searchFilter],
-	// );
 
 	const yearStartChangeHandler = async (event: any) => {
 		setYearCheck({ ...yearCheck, start: Number(event.target.value) });
@@ -302,10 +244,6 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 			if (searchFilter?.search?.options?.length == 0) {
 				delete searchFilter.search.options;
 			}
-
-			// if (searchFilter?.search?.bedsList?.length == 0) {
-			// 	delete searchFilter.search.bedsList;
-			// }
 
 			await router.push(
 				`/property?input=${JSON.stringify(searchFilter)}`,

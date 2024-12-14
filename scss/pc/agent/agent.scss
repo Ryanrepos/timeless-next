@@ -1,13 +1,14 @@
 #pc-wrap {
 	.agent-list-page {
 		position: relative;
-		padding: 147px 0 75px;
+		padding-top: 50px;
+		padding-bottom: 30px;
 		width: 100%;
 		height: auto;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-
+		
 		.container {
 			display: flex;
 			flex-direction: column;
@@ -23,7 +24,6 @@
 						padding: 22px 10px;
 						width: 333px;
 						height: 50px;
-						// border-radius: 40px;
 						border: 1px solid green;
 						background: #fff;
 						color: green;
@@ -42,15 +42,13 @@
 					justify-content: flex-end;
 					button {
 						margin-left: 10px;
-						color: green;
+						color: white;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
-						font-weight: bold;
+						font-weight: normal;
 						line-height: 26px;
-						&:hover {
-							background: none;
-						}
+						background-color: $green;
 					}
 				}
 			}
@@ -63,7 +61,7 @@
 				display: flex;
 				flex-direction: row;
 				flex-wrap: wrap;
-
+				margin: 10;
 			}
 			.pagination {
 				display: flex;

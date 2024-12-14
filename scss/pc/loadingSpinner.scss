@@ -1,0 +1,33 @@
+/* LoadingSpinner.css */
+.loading-spinner {
+    position: fixed; /* Position it in the center of the page */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: semi-transparent background */
+    z-index: 9999; /* Ensure it stays on top of other content */
+  }
+  
+  .spinner {
+    width: 50px; /* Set the size of the spinner */
+    height: 50px;
+    border: 5px solid #f3f3f3; /* Light gray border */
+    border-top: 5px solid #3498db; /* Blue color for the top border */
+    border-radius: 50%; /* Make it circular */
+    animation: spin 1s linear infinite; /* The spinning animation */
+  }
+  
+  /* Define the spinning animation */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg); /* Initial state */
+    }
+    100% {
+      transform: rotate(360deg); /* Final state (completes a full rotation) */
+    }
+  }
+  
