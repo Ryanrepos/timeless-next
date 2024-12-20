@@ -221,6 +221,7 @@
 					display: flex;
 					width: auto;
 					align-items: center;
+					justify-content: center;
 					gap: 50px;
 					.list-config {
 						display: flex;
@@ -228,7 +229,7 @@
 						height: auto;
 						flex-direction: row;
 						flex-wrap: wrap;
-						justify-content: space-between;
+						justify-content: flex-start;
 						gap: 10px;
 						.card-config {
 							width: 296px;

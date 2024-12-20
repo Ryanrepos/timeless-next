@@ -13,7 +13,7 @@ import {
 	IconButton,
 } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { PropertyLocation, PropertyCategory } from '../../enums/property.enum';
+import { PropertyLocation, PropertyCategory, PropertyBrand } from '../../enums/property.enum';
 import { PropertiesInquiry } from '../../types/property/property.input';
 import { useRouter } from 'next/router';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
@@ -40,6 +40,7 @@ const Filter = (props: FilterType) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const [propertyLocation, setPropertyLocation] = useState<PropertyLocation[]>(Object.values(PropertyLocation));
+	const [propertyBrand, setPropertyBrand] = useState<PropertyBrand[]>(Object.values(PropertyBrand));
 	const [propertyType, setPropertyType] = useState<PropertyCategory[]>(Object.values(PropertyCategory));
 	const [searchText, setSearchText] = useState<string>('');
 	const [showMore, setShowMore] = useState<boolean>(false);
@@ -78,8 +79,9 @@ const Filter = (props: FilterType) => {
 			})}`, { scroll: false }).then();
 		}
 
-		if (searchFilter?.search?.options?.length == 0) {
-			delete searchFilter.search.options;
+		if (searchFilter?.search?.brandList?.length == 0) {
+			delete searchFilter.search.brandList;
+			setShowMore(false);
 			router.push(`/property?input=${JSON.stringify({
 				...searchFilter,
 				search: {
@@ -93,7 +95,25 @@ const Filter = (props: FilterType) => {
 			})}`, { scroll: false }).then();
 		}
 
+		//---
+
+		// if (searchFilter?.search?.options?.length == 0) {
+		// 	delete searchFilter.search.options;
+		// 	router.push(`/property?input=${JSON.stringify({
+		// 		...searchFilter,
+		// 		search: {
+		// 			...searchFilter.search,
+		// 		},
+		// 	})}`, `/property?input=${JSON.stringify({
+		// 		...searchFilter,
+		// 		search: {
+		// 			...searchFilter.search,
+		// 		},
+		// 	})}`, { scroll: false }).then();
+		// }
+
 		if (searchFilter?.search?.locationList) setShowMore(true);
+		if (searchFilter?.search?.brandList) setShowMore(true);
 	}, [searchFilter]);
 
 	/** HANDLERS **/
@@ -194,8 +214,8 @@ const Filter = (props: FilterType) => {
 		},
 		[searchFilter],
 	);
-	
-	const propertyOptionSelectHandler = useCallback(
+
+	const propertyBrandSelectHandler = useCallback(
 		async (e: any) => {
 			try {
 				const isChecked = e.target.checked;
@@ -204,37 +224,41 @@ const Filter = (props: FilterType) => {
 					await router.push(
 						`/property?input=${JSON.stringify({
 							...searchFilter,
-							search: { ...searchFilter.search, options: [...(searchFilter?.search?.options || []), value] },
+							search: { ...searchFilter.search, brandList: [...(searchFilter?.search?.brandList || []), value] },
 						})}`,
 						`/property?input=${JSON.stringify({
 							...searchFilter,
-							search: { ...searchFilter.search, options: [...(searchFilter?.search?.options || []), value] },
+							search: { ...searchFilter.search, brandList: [...(searchFilter?.search?.brandList || []), value] },
 						})}`,
 						{ scroll: false },
 					);
-				} else if (searchFilter?.search?.options?.includes(value)) {
+				} else if (searchFilter?.search?.brandList?.includes(value)) {
 					await router.push(
 						`/property?input=${JSON.stringify({
 							...searchFilter,
 							search: {
 								...searchFilter.search,
-								options: searchFilter?.search?.options?.filter((item: string) => item !== value),
+								brandList: searchFilter?.search?.brandList?.filter((item: string) => item !== value),
 							},
 						})}`,
 						`/property?input=${JSON.stringify({
 							...searchFilter,
 							search: {
 								...searchFilter.search,
-								options: searchFilter?.search?.options?.filter((item: string) => item !== value),
+								brandList: searchFilter?.search?.brandList?.filter((item: string) => item !== value),
 							},
 						})}`,
 						{ scroll: false },
 					);
 				}
 
-				console.log('propertyOptionSelectHandler:', e.target.value);
+				if (searchFilter?.search?.brandList?.length == 0) {
+					alert('error');
+				}
+
+				console.log('propertyBrandSelectHandler:', e.target.value);
 			} catch (err: any) {
-				console.log('ERROR, propertyOptionSelectHandler:', err);
+				console.log('ERROR, propertyBrandSelectHandler:', err);
 			}
 		},
 		[searchFilter],
@@ -400,41 +424,42 @@ const Filter = (props: FilterType) => {
 				</Stack>
 				
 				<Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Options</Typography>
-					<Stack className={'input-box'}>
-						<Checkbox
-							id={'Barter'}
-							className="property-checkbox"
-							color="default"
-							size="small"
-							value={'New'}
-							checked={(searchFilter?.search?.options || []).includes('watchNew')}
-							onChange={propertyOptionSelectHandler}
-							icon={<CircleIcon style={{ color: '#4caf50' }} />} // Unchecked state
-							checkedIcon={<CheckCircleIcon style={{ color: '#4caf50' }} />} // Checked state
-						/>
-
-						<label htmlFor={'Barter'} style={{ cursor: 'pointer' }}>
-							<Typography className="propert-type">New</Typography>
-						</label>
-					</Stack>
-					<Stack className={'input-box'}>
-						<Checkbox
-							id={'Rent'}
-							className="property-checkbox"
-							color="default"
-							size="small"
-							value={'Worn'}
-							checked={(searchFilter?.search?.options || []).includes('watchWorn')}
-							onChange={propertyOptionSelectHandler}
-							icon={<CircleIcon style={{ color: '#4caf50' }} />} // Unchecked state
-							checkedIcon={<CheckCircleIcon style={{ color: '#4caf50' }} />} // Checked state
-						/>
-						<label htmlFor={'Rent'} style={{ cursor: 'pointer' }}>
-							<Typography className="propert-type">Worn</Typography>
-						</label>
+					<p className={'title'} style={{ textShadow: '0px 3px 4px #b9b9b9' }}>
+						Brands
+					</p>
+					<Stack
+						className={`property-location`}
+						style={{ height: showMore ? '253px' : '115px' }}
+						onMouseEnter={() => setShowMore(true)}
+						onMouseLeave={() => {
+							if (!searchFilter?.search?.brandList) {
+								setShowMore(false);
+							}
+						}}
+					>
+						{propertyBrand.map((brand: string) => {
+						return (
+							<Stack className={'input-box'} key={brand}>
+								<Checkbox
+									id={brand}
+									className="property-checkbox"
+									color="default"
+									size="small"
+									value={brand}
+									checked={(searchFilter?.search?.brandList || []).includes(brand as PropertyBrand)}
+									onChange={propertyBrandSelectHandler}
+									icon={<CircleIcon style={{ color: '#4caf50' }} />} // Unchecked state
+									checkedIcon={<CheckCircleIcon style={{ color: '#4caf50' }} />} // Checked state
+								/>
+								<label htmlFor={brand} style={{ cursor: 'pointer' }}>
+									<Typography className="property-type">{brand}</Typography>
+								</label>
+							</Stack>
+						);
+						})}
 					</Stack>
 				</Stack>
+
 				<Stack className={'find-your-home'}>
 					<Typography className={'title'}>Price Range</Typography>
 					<Stack className="square-year-input">

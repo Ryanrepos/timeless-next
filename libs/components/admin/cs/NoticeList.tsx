@@ -206,8 +206,8 @@ export const NoticeList = (props: NoticeListType) => {
 									<TableCell padding="checkbox">
 										<Checkbox color="primary" />
 									</TableCell>
-									<TableCell align="left">mb id</TableCell>
-									<TableCell align="left">member.mb_full_name</TableCell>
+									<TableCell align="left">Event</TableCell>
+									<TableCell align="left">Title</TableCell>
 									<TableCell align="left">member.mb_phone</TableCell>
 									<TableCell align="left" className={'name'}>
 										<Stack direction={'row'}>

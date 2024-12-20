@@ -38,61 +38,116 @@ export const UPDATE_MEMBER_BY_ADMIN = gql`
  *************************/
 
 export const UPDATE_PROPERTY_BY_ADMIN = gql`
-	mutation UpdatePropertyByAdmin($input: PropertyUpdate!) {
-		updatePropertyByAdmin(input: $input) {
-			_id
-			propertyType
-			propertyStatus
-			propertyLocation
-			propertyAddress
-			propertyTitle
-			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
-			propertyViews
-			propertyLikes
-			propertyImages
-			propertyDesc
-			propertyBarter
-			propertyRent
-			memberId
-			soldAt
-			deletedAt
-			constructedAt
-			createdAt
-			updatedAt
-		}
-	}
+mutation UpdatePropertyByAdmin($input: PropertyUpdate!) {
+    updatePropertyByAdmin(input: $input) {
+        _id
+        propertyCategory
+        propertyBrand
+        propertyStatus
+        propertyLocation
+        propertyAddress
+        propertyTitle
+        propertyPrice
+        propertyViews
+        propertyLikes
+        propertyComments
+        propertyRank
+        propertyImages
+        propertyDesc
+        propertyNew
+        propertyWorn
+        memberId
+        soldAt
+        deletedAt
+        constructedAt
+        createdAt
+        updatedAt
+        memberData {
+            _id
+            memberType
+            memberStatus
+            memberAuthType
+            memberPhone
+            memberNick
+            memberFullName
+            memberImage
+            memberAddress
+            memberDesc
+            memberProperties
+            memberArticles
+            memberFollowers
+            memberFollowings
+            memberPoints
+            memberLikes
+            memberViews
+            memberComments
+            memberRank
+            memberWarnings
+            memberBlocks
+            deletedAt
+            createdAt
+            updatedAt
+            accessToken
+        }
+    }
+}
 `;
 
 export const REMOVE_PROPERTY_BY_ADMIN = gql`
-	mutation RemovePropertyByAdmin($input: String!) {
-		removePropertyByAdmin(propertyId: $input) {
-			_id
-			propertyType
-			propertyStatus
-			propertyLocation
-			propertyAddress
-			propertyTitle
-			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
-			propertyViews
-			propertyLikes
-			propertyImages
-			propertyDesc
-			propertyBarter
-			propertyRent
-			memberId
-			soldAt
-			deletedAt
-			constructedAt
-			createdAt
-			updatedAt
-		}
-	}
+mutation RemovePropertyByAdmin($input: String!) {
+    removePropertyByAdmin(propertyId: $input) {
+        _id
+        propertyCategory
+        propertyBrand
+        propertyStatus
+        propertyLocation
+        propertyAddress
+        propertyTitle
+        propertyPrice
+        propertyViews
+        propertyLikes
+        propertyComments
+        propertyRank
+        propertyImages
+        propertyDesc
+        propertyNew
+        propertyWorn
+        memberId
+        soldAt
+        deletedAt
+        constructedAt
+        createdAt
+        updatedAt
+        memberData {
+            _id
+            memberType
+            memberStatus
+            memberAuthType
+            memberPhone
+            memberNick
+            memberFullName
+            memberImage
+            memberAddress
+            memberDesc
+            memberProperties
+            memberArticles
+            memberFollowers
+            memberFollowings
+            memberPoints
+            memberLikes
+            memberViews
+            memberComments
+            memberRank
+            memberWarnings
+            memberBlocks
+            deletedAt
+            createdAt
+            updatedAt
+            accessToken
+        }
+    }
+}
+
 `;
 
 /**************************

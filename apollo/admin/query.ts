@@ -43,60 +43,65 @@ export const GET_ALL_MEMBERS_BY_ADMIN = gql`
  *************************/
 
 export const GET_ALL_PROPERTIES_BY_ADMIN = gql`
-	query GetAllPropertiesByAdmin($input: AllPropertiesInquiry!) {
-		getAllPropertiesByAdmin(input: $input) {
-			list {
-				_id
-				propertyType
-				propertyStatus
-				propertyLocation
-				propertyAddress
-				propertyTitle
-				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
-				propertyViews
-				propertyLikes
-				propertyImages
-				propertyDesc
-				propertyBarter
-				propertyRent
-				memberId
-				soldAt
-				deletedAt
-				constructedAt
-				createdAt
-				updatedAt
-				memberData {
-					_id
-					memberType
-					memberStatus
-					memberAuthType
-					memberPhone
-					memberNick
-					memberFullName
-					memberImage
-					memberAddress
-					memberDesc
-					memberWarnings
-					memberBlocks
-					memberProperties
-					memberRank
-					memberPoints
-					memberLikes
-					memberViews
-					deletedAt
-					createdAt
-					updatedAt
-					accessToken
-				}
-			}
-			metaCounter {
-				total
-			}
-		}
-	}
+query GetAllPropertiesByAdmin($input: AllPropertiesInquiry!) {
+    getAllPropertiesByAdmin(input: $input) {
+        list {
+            _id
+            propertyCategory
+            propertyBrand
+            propertyStatus
+            propertyLocation
+            propertyAddress
+            propertyTitle
+            propertyPrice
+            propertyViews
+            propertyLikes
+            propertyComments
+            propertyRank
+            propertyImages
+            propertyDesc
+            propertyNew
+            propertyWorn
+            memberId
+            soldAt
+            deletedAt
+            constructedAt
+            createdAt
+            updatedAt
+            memberData {
+                _id
+                memberType
+                memberStatus
+                memberAuthType
+                memberPhone
+                memberNick
+                memberFullName
+                memberImage
+                memberAddress
+                memberDesc
+                memberProperties
+                memberArticles
+                memberFollowers
+                memberFollowings
+                memberPoints
+                memberLikes
+                memberViews
+                memberComments
+                memberRank
+                memberWarnings
+                memberBlocks
+                deletedAt
+                createdAt
+                updatedAt
+                accessToken
+            }
+        }
+        metaCounter {
+            total
+        }
+    }
+}
+
 `;
 
 /**************************
@@ -104,49 +109,55 @@ export const GET_ALL_PROPERTIES_BY_ADMIN = gql`
  *************************/
 
 export const GET_ALL_BOARD_ARTICLES_BY_ADMIN = gql`
-	query GetAllBoardArticlesByAdmin($input: AllBoardArticlesInquiry!) {
-		getAllBoardArticlesByAdmin(input: $input) {
-			list {
-				_id
-				articleCategory
-				articleStatus
-				articleTitle
-				articleContent
-				articleImage
-				articleViews
-				articleLikes
-				memberId
-				createdAt
-				updatedAt
-				memberData {
-					_id
-					memberType
-					memberStatus
-					memberAuthType
-					memberPhone
-					memberNick
-					memberFullName
-					memberImage
-					memberAddress
-					memberDesc
-					memberWarnings
-					memberBlocks
-					memberProperties
-					memberRank
-					memberPoints
-					memberLikes
-					memberViews
-					deletedAt
-					createdAt
-					updatedAt
-					accessToken
-				}
-			}
-			metaCounter {
-				total
-			}
-		}
-	}
+query GetAllBoardArticlesByAdmin($input: AllBoardArticlesInquiry!) {
+    getAllBoardArticlesByAdmin(input: $input) {
+        list {
+            _id
+            articleCategory
+            articleStatus
+            articleTitle
+            articleContent
+            articleImage
+            articleViews
+            articleLikes
+            articleComments
+            memberId
+            createdAt
+            updatedAt
+            memberData {
+                _id
+                memberType
+                memberStatus
+                memberAuthType
+                memberPhone
+                memberNick
+                memberFullName
+                memberImage
+                memberAddress
+                memberDesc
+                memberProperties
+                memberArticles
+                memberFollowers
+                memberFollowings
+                memberPoints
+                memberLikes
+                memberViews
+                memberComments
+                memberRank
+                memberWarnings
+                memberBlocks
+                deletedAt
+                createdAt
+                updatedAt
+                accessToken
+            }
+        }
+        metaCounter {
+            total
+        }
+    }
+}
+
 `;
 
 /**************************

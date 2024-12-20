@@ -20,7 +20,7 @@ interface PISearch {
 	memberId?: string;
 	locationList?: PropertyLocation[];
 	categoryList?: PropertyCategory[];
-	brandList?: string[];
+	brandList?: PropertyBrand[];
 	options?: string[];
 	pricesRange?: Range;
 	periodsRange?: PeriodsRange;

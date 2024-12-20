@@ -13,6 +13,7 @@ import TablePagination from '@mui/material/TablePagination';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import { NoticeList } from '../../../libs/components/admin/cs/NoticeList';
+import router from 'next/router';
 
 const AdminNotice: NextPage = (props: any) => {
 	const [anchorEl, setAnchorEl] = useState<[] | HTMLElement[]>([]);
@@ -20,6 +21,10 @@ const AdminNotice: NextPage = (props: any) => {
 	/** APOLLO REQUESTS **/
 	/** LIFECYCLES **/
 	/** HANDLERS **/
+
+	const createNotice = () => {
+		router.push(`/cs`);
+	}
 
 	return (
 		// @ts-ignore
@@ -31,9 +36,10 @@ const AdminNotice: NextPage = (props: any) => {
 					variant={'contained'}
 					size={'medium'}
 					// onClick={() => router.push(`/_admin/cs/faq_create`)}
+					onClick={createNotice}
 				>
 					<AddRoundedIcon sx={{ mr: '8px' }} />
-					ADD
+					create notice
 				</Button>
 			</Box>
 			<Box component={'div'} className={'table-wrap'}>
@@ -71,10 +77,10 @@ const AdminNotice: NextPage = (props: any) => {
 								</ListItem>
 							</List>
 							<Divider />
-							<Stack className={'search-area'} sx={{ m: '24px' }}>
+							{/* <Stack className={'search-area'} sx={{ m: '24px' }}>
 								<Select sx={{ width: '160px', mr: '20px' }} value={'searchCategory'}>
-									<MenuItem value={'mb_nick'}>mb_nick</MenuItem>
-									<MenuItem value={'mb_id'}>mb_id</MenuItem>
+									<MenuItem value={'mb_nick'}>NICK</MenuItem>
+									<MenuItem value={'mb_id'}>ID</MenuItem>
 								</Select>
 
 								<OutlinedInput
@@ -95,7 +101,7 @@ const AdminNotice: NextPage = (props: any) => {
 										</>
 									}
 								/>
-							</Stack>
+							</Stack> */}
 							<Divider />
 						</Box>
 						<NoticeList
