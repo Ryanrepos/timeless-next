@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Stack, Box } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
+import { GET_NOTICES_BY_ADMIN } from '../../../apollo/admin/query';
+import { useQuery } from '@apollo/client';
+import { Notices } from '../../types/cs/csNotice';
+import { T } from '../../types/common';
 
 const Notice = () => {
 	const device = useDeviceDetect();
 
+	const [notices, setNotices] = useState<Notices[]>([]);
+	const [noticeTotal, setNoticeTotal] = useState<number>(0);
+
 	/** APOLLO REQUESTS **/
+	const {
+		loading: getNoticesLoading,
+		data: getNotices,
+		error: getNoticesError,
+		refetch:getNoticesRefetch
+	} = useQuery(GET_NOTICES_BY_ADMIN, {
+		fetchPolicy:'network-only',
+		variables:{ input: {} },
+		notifyOnNetworkStatusChange:true,
+		onCompleted:(data: T) => {
+			setNotices(data?.getNoticesByAdmin?.list),
+			setNoticeTotal(data?.getNoticesByAdmin?.metaCounter?.[0]?.total ?? 0)
+		},
+	});
 	/** LIFECYCLES **/
 	/** HANDLERS **/
 
@@ -51,3 +72,4 @@ const Notice = () => {
 };
 
 export default Notice;
+

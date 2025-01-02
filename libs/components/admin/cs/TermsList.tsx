@@ -7,8 +7,7 @@ import { Stack } from '@mui/material';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { NotePencil } from 'phosphor-react';
 import { NoticeStatus } from '../../../enums/notice.enum';
-import { CsNotice, Notices } from '../../../types/cs/csNotice';
-import { T } from '../../../types/common';
+import { CsNotice } from '../../../types/cs/csNotice';
 
 interface Data {
 	category: string;
@@ -38,12 +37,6 @@ const headCells: readonly HeadCell[] = [
 		numeric: true,
 		disablePadding: false,
 		label: 'TITLE',
-	},
-	{
-		id: 'id',
-		numeric: true,
-		disablePadding: false,
-		label: 'Event date',
 	},
 	{
 		id: 'content',
@@ -96,7 +89,7 @@ interface NoticeListType {
 	anchorEl?: any;
 }
 
-export const NoticeList = (props: NoticeListType) => {
+export const TermsList = (props: NoticeListType) => {
 	const {
 		notices = [],
 		updateNoticeHandler,
@@ -119,19 +112,18 @@ export const NoticeList = (props: NoticeListType) => {
 					{/*@ts-ignore*/}
 					<EnhancedTableToolbar />
 					<TableBody>
-					{notices && notices.length === 0 && (
+					{notices.length === 0 && (
 							<TableRow>
 								<TableCell align="center" colSpan={8}>
 									<span className={'no-data'}>data not found!</span>
 								</TableCell>
 							</TableRow>
-					)}
-					{notices && notices.length !== 0 &&
+						)}
+					{notices.length !== 0 &&
 						notices.map((notice: CsNotice, index: number) => (
 								<TableRow hover key={'member._id'} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 									<TableCell align="left">{notice.noticeCategory}</TableCell>
 									<TableCell align="left">{notice.noticeTitle}</TableCell>
-									<TableCell align="left">{notice.noticeEventDate}</TableCell>
 									<TableCell align="left">{notice.noticeContent ?? 'None'}</TableCell>
 									<TableCell align="left">
 											<>
@@ -187,6 +179,3 @@ export const NoticeList = (props: NoticeListType) => {
 		</Stack>
 	);
 };
-
-
-

@@ -206,3 +206,29 @@ export const GET_COMMENTS = gql`
 		}
 	}
 `;
+
+/**************************
+ *         CS NOTICE      *
+ *************************/
+
+export const GET_NOTICES_BY_ADMIN = gql`
+query GetNoticesByAdmin($input: CsInquiry!) {
+    getNoticesByAdmin(input: $input) {
+        list {
+            _id
+            noticeCategory
+            noticeStatus
+            faqCategory
+            noticeTitle
+            noticeContent
+            noticeEventDate
+            memberId
+            createdAt
+            updatedAt
+        }
+        metaCounter {
+            total
+        }
+    }
+}
+`;

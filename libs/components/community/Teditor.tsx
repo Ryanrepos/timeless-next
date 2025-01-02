@@ -109,7 +109,7 @@ const TuiEditor = () => {
 		  console.log(err);
 		  sweetErrorHandling(new Error(Message.INSERT_ALL_INPUTS)).then();
 		}
-	  };
+	};
 
 	const doDisabledCheck = () => {
 		if (memoizedValues.articleContent === '' || memoizedValues.articleTitle === '') {

@@ -208,3 +208,58 @@ export const REMOVE_COMMENT_BY_ADMIN = gql`
 		}
 	}
 `;
+
+/**************************
+ *         CS NOTICE      *
+ *************************/
+
+export const CREATE_NOTICE_BY_ADMIN = gql`
+mutation CreateNotice($input: CsInput!) {
+    createNotice(input: $input) {
+        _id
+        noticeCategory
+        noticeStatus
+        faqCategory
+        noticeTitle
+        noticeContent
+        noticeEventDate
+        memberId
+        createdAt
+        updatedAt
+    }
+}
+`;
+
+export const UPDATE_NOTICE_BY_ADMIN = gql`
+mutation UpdateNotice($input: CsUpdate!) {
+    updateNotice(input: $input) {
+        _id
+        noticeCategory
+        noticeStatus
+        faqCategory
+        noticeTitle
+        noticeContent
+        noticeEventDate
+        memberId
+        createdAt
+        updatedAt
+    }
+}
+`;
+
+export const REMOVE_NOTICE_BY_ADMIN = gql`
+mutation RemoveNotice($input: String!) {
+    removeNotice(noticeId: $input) {
+        _id
+        noticeCategory
+        noticeStatus
+        faqCategory
+        noticeTitle
+        noticeContent
+        noticeEventDate
+        memberId
+        createdAt
+        updatedAt
+    }
+}
+`;

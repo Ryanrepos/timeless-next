@@ -51,12 +51,6 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
 	{
-		id: 'id',
-		numeric: true,
-		disablePadding: false,
-		label: 'MB ID',
-	},
-	{
 		id: 'nickname',
 		numeric: true,
 		disablePadding: false,
@@ -177,7 +171,7 @@ export const MemberPanelList = (props: MemberPanelListType) => {
 											</Stack>
 										</TableCell>
 
-										<TableCell align="center">{member.memberFullName ?? '-'}</TableCell>
+										<TableCell align="center">{member.memberFullName ?? '*****'}</TableCell>
 										<TableCell align="left">{member.memberPhone}</TableCell>
 
 										<TableCell align="center">

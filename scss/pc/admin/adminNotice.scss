@@ -1,0 +1,59 @@
+.notice-main {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 100vh; 
+    background-color: rgb(51, 180, 66);
+    .notice-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        .notice-title {
+            color: black;
+            font-weight: 400;
+            font: $font;
+            text-align: center;
+        }
+        .form-control {
+            display: flex;
+            gap: 20px;
+        }
+        #my-input {
+            width: 700px;
+            min-height: 100px;
+            padding: 10px;
+            border-width: 1px;
+            box-shadow: $box-shadow;
+            border-radius: 12px;
+            background-color: white;
+        }
+        .notice-button {
+            height: 40px;
+            width: 200px;
+            color: white;
+        }
+    }
+  
+}
+
+.main-box {
+    // background-color: violet;
+    .create-notice-btn {
+        background-color: $green;
+        &:hover {
+            background-color: $green;
+        }
+        color: white;
+        padding-left: 2px;
+        border-radius: 8px;
+    }
+    .notice-text {
+        margin-top: 50px;
+    }
+}
+

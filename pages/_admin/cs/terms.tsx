@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import withAdminLayout from '../../../libs/components/layout/LayoutAdmin';
-import { Box} from '@mui/material';
+import { Box } from '@mui/material';
 import { List, ListItem } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import { TabContext } from '@mui/lab';
 import TablePagination from '@mui/material/TablePagination';
-import { NoticeList } from '../../../libs/components/admin/cs/NoticeList';
 import { sweetConfirmAlert, sweetErrorHandling } from '../../../libs/sweetAlert';
 import { NoticeCategory, NoticeStatus } from '../../../libs/enums/notice.enum';
 // import { REMOVE_NOTICE, UPDATE_NOTICE } from '../../../apollo/admin/mutation';
 import { useMutation, useQuery } from '@apollo/client';
 import { T } from '../../../libs/types/common';
+import { TermsList } from '../../../libs/components/admin/cs/TermsList';
+import { useRouter } from 'next/router';
 import { NoticesInquiry } from '../../../libs/types/cs/csNoticeInput';
 import { Notices } from '../../../libs/types/cs/csNotice';
-import router from 'next/router';
 import { GET_NOTICES_BY_ADMIN } from '../../../apollo/admin/query';
-import { CsUpdate } from '../../../libs/types/cs/csUpdate';
 import { REMOVE_NOTICE_BY_ADMIN, UPDATE_NOTICE_BY_ADMIN } from '../../../apollo/admin/mutation';
-
+import { CsUpdate } from '../../../libs/types/cs/csUpdate';
 
 const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
 	const [anchorEl, setAnchorEl] = useState<[] | HTMLElement[]>([]);
@@ -35,17 +34,17 @@ const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
 	const [removeNotice] = useMutation(REMOVE_NOTICE_BY_ADMIN);
 	
 	const {
-		loading: getNoticesLoading,
-		data: getNotices,
+		loading: getNotices,
+		data: getNoticesData,
 		error: getNoticesError,
 		refetch:getNoticesRefetch
 	} = useQuery(GET_NOTICES_BY_ADMIN, {
 		fetchPolicy:'network-only',
 		variables:{ input: noticeInquiry },
 		notifyOnNetworkStatusChange:true,
-		onCompleted:(data: T) => {
-			setNotices(data?.getNoticesByAdmin?.list),
-			setNoticeTotal(data?.getNoticesByAdmin?.metaCounter?.[0]?.total ?? 0)
+		onCompleted:(data:T) => {
+			setNotices(data?.getNotices?.list),
+			setNoticeTotal(data?.getNotices?.metaCounter?.[0]?.total ?? 0)
 		},
 	});
 	
@@ -86,23 +85,24 @@ const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
 		switch (newValue) {
 			case 'HOLD':
 				setNoticeInquiry({ ...noticeInquiry, search: { noticeStatus: NoticeStatus.HOLD } });
-				noticeCategory = NoticeCategory.EVENT;
+				noticeCategory = NoticeCategory.TERMS;
 				break;
 			case 'ACTIVE':
 				setNoticeInquiry({ ...noticeInquiry, search: { noticeStatus: NoticeStatus.ACTIVE } });
-				noticeCategory = NoticeCategory.EVENT;
+				noticeCategory = NoticeCategory.TERMS;
 				break;
 			case 'DELETE':
 				setNoticeInquiry({ ...noticeInquiry, search: { noticeStatus: NoticeStatus.DELETE } });
-				noticeCategory = NoticeCategory.EVENT;
+				noticeCategory = NoticeCategory.TERMS;
 				break;
 			default:
 				delete noticeInquiry?.search?.noticeStatus;
 				setNoticeInquiry({ ...noticeInquiry });
-				noticeCategory = NoticeCategory.EVENT;
+				noticeCategory = NoticeCategory.TERMS;
 				break;
 		}
-		setNoticeInquiry(prevState => ({
+		// TODO 
+		setNoticeInquiry((prevState: any) => ({
 			...prevState,
 			search: {
 				...prevState.search,
@@ -120,6 +120,7 @@ const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
 			});
 			menuIconCloseHandler();
 			await getNoticesRefetch({input:noticeInquiry});
+
 		}catch(err: any) {
 			menuIconCloseHandler();
 			sweetErrorHandling(err).then();
@@ -143,13 +144,7 @@ const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
 		// @ts-ignore
 		<Box component={'div'} className={'content'}  style={{ minHeight:'1300px' }}>
 			<Box component={'div'} className={'title flex_space'}>
-				<Typography 
-					sx={{background: "gray", 
-					padding: "10px",
-					color: "white",
-					borderRadius: 5
-				}}
-				variant={'h2'}>Notice Management</Typography>
+				<Typography variant={'h2'}>Terms Management</Typography>
 			</Box>
 			<Box component={'div'} className={'table-wrap'}>
 				<Box component={'div'} sx={{ width: '100%', typography: 'body1' }}>
@@ -187,7 +182,7 @@ const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
 							</List>
 							<Divider />
 						</Box>
-						<NoticeList
+						<TermsList
 							notices = {notices}
 							updateNoticeHandler = {updateNoticeHandler}
 							removeNoticeHandler = {removeNoticeHandler}
@@ -197,11 +192,11 @@ const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
 						/>
 
 						<TablePagination
-							rowsPerPageOptions={[20, 40, 60]}
+							rowsPerPageOptions={[10,20, 40, 60]}
 							component="div"
 							count={noticeTotal}
 							rowsPerPage={noticeInquiry?.limit}
-							page={noticeInquiry?.page - 1}
+							page={noticeInquiry?.page-1}
 							onPageChange={changePageHandler}
 							onRowsPerPageChange={changeRowsPerPageHandler}
 						/>
@@ -218,7 +213,7 @@ AdminNotice.defaultProps = {
         limit: 10,
         sort: 'createdAt',
         search: {
-            noticeCategory: NoticeCategory.EVENT
+            noticeCategory: NoticeCategory.TERMS
         },
     },
 };
