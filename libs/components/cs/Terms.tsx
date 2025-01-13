@@ -8,7 +8,7 @@ import { GET_NOTICES_BY_ADMIN } from '../../../apollo/admin/query';
 import { Notices } from '../../types/cs/csNotice';
 import { NoticesInquiry } from '../../types/cs/csNoticeInput';
 
-const Notice = ({initialInquiry, ...props}:any) => {
+const Terms = ({initialInquiry, ...props}:any) => {
 	const device = useDeviceDetect();
 	const [noticeInquiry, setNoticeInquiry] = useState<NoticesInquiry>(initialInquiry);
 	const [notices, setNotices] = useState<Notices[]>([]);
@@ -47,10 +47,6 @@ const Notice = ({initialInquiry, ...props}:any) => {
 	} else {
 		return (
 			<Stack className={'notice-content'}>
-				{/* <div>
-					<span style={{marginRight:'20px',textDecoration:'underline', cursor:'pointer'}} className={'title'} onClick={(e)=>{termsHandler(window.location.reload(),NoticeCategory.EVENT)}} >Notice</span>
-					<span style={{marginRight:'20px',textDecoration:'underline', cursor:'pointer'}} className={'title'} onClick={(e)=>{termsHandler(e,NoticeCategory.TERMS)}}>Terms</span>
-				</div> */}
 				<Stack className={'main'}>
 					<Box component={'div'} className={'top'}>
 						<span>Title</span>
@@ -71,14 +67,14 @@ const Notice = ({initialInquiry, ...props}:any) => {
 		);
 	}
 };
-Notice.defaultProps = {
+Terms.defaultProps = {
     initialInquiry: {
         page: 1,
         limit: 10,
         sort: 'createdAt',
         search: {
-            noticeCategory: NoticeCategory.EVENT
+            noticeCategory: NoticeCategory.TERMS
         },
     },
 };
-export default Notice;
+export default Terms;

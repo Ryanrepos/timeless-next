@@ -92,13 +92,21 @@
         .notice-content {
           .main {
             border: 1px solid #EEE;
+            display: flex;
+            flex-direction: column;
             .top {
               padding: 25px 33px;
               display: flex;
               flex-direction: row;
               justify-content: space-between;
+              background-color: white;
               span {
-                color: #000;
+                color: black;
+                background-color: rgb(184, 172, 172);
+                padding: 5px;
+                width: 100px;
+                text-align: center;
+                border-radius: 8px;
                 font-family: $font;
                 font-size: 14px;
                 font-style: normal;
@@ -110,11 +118,14 @@
             .bottom {
               display: flex;
               flex-direction: column;
+              // align-items: center;
+              justify-content: center;
+
               .notice-card {
                 padding: 20px 14px 20px 30px;
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
+                justify-content: space-around;
                 border: 1px solid #EEE;
                 &.event {
                   background: #F6D79A;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import withAdminLayout from '../../../libs/components/layout/LayoutAdmin';
-import { Box} from '@mui/material';
+import { Box, Button} from '@mui/material';
 import { List, ListItem } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -19,6 +19,8 @@ import router from 'next/router';
 import { GET_NOTICES_BY_ADMIN } from '../../../apollo/admin/query';
 import { CsUpdate } from '../../../libs/types/cs/csUpdate';
 import { REMOVE_NOTICE_BY_ADMIN, UPDATE_NOTICE_BY_ADMIN } from '../../../apollo/admin/mutation';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import { useRouter } from 'next/router';
 
 
 const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
@@ -29,6 +31,8 @@ const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
 	const [value, setValue] = useState(
 		noticeInquiry?.search?.noticeStatus ? noticeInquiry?.search?.noticeStatus : 'ALL',
 	);
+	const router = useRouter();
+
 
 	/** APOLLO REQUESTS **/
 	const [updateNotice] = useMutation(UPDATE_NOTICE_BY_ADMIN);
@@ -138,6 +142,10 @@ const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
 			sweetErrorHandling(err).then();
 		}
 	}; 
+
+	const createNoticePage = () => {
+		router.push("/_admin/cs/createNotice");
+	}
 	
 	return (
 		// @ts-ignore
@@ -150,6 +158,14 @@ const AdminNotice: NextPage = ({initialInquiry, ...props}: any) => {
 					borderRadius: 5
 				}}
 				variant={'h2'}>Notice Management</Typography>
+				<Button onClick={createNoticePage} sx={{
+				color: "white",
+				margin: "10px",
+				borderRadius: 5
+			}} variant="contained" color="success">
+				<NoteAddIcon sx={{height: "17px"}}/>
+				Create Notice
+			</Button>
 			</Box>
 			<Box component={'div'} className={'table-wrap'}>
 				<Box component={'div'} sx={{ width: '100%', typography: 'body1' }}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import withAdminLayout from '../../../libs/components/layout/LayoutAdmin';
-import { Box, List, ListItem } from '@mui/material';
+import { Box, Button, List, ListItem } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import { TabContext } from '@mui/lab';
@@ -16,6 +16,8 @@ import { Notices } from '../../../libs/types/cs/csNotice';
 import { NoticesInquiry } from '../../../libs/types/cs/csNoticeInput';
 import { GET_NOTICES_BY_ADMIN } from '../../../apollo/admin/query';
 import { CsUpdate } from '../../../libs/types/cs/csUpdate';
+import router from 'next/router';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
 const FaqArticles: NextPage = ({initialInquiry, ...props}: any) => {
 	const [anchorEl, setAnchorEl] = useState<[] | HTMLElement[]>([]);
@@ -134,6 +136,10 @@ const FaqArticles: NextPage = ({initialInquiry, ...props}: any) => {
 		}
 	}; 
 	
+	const createNoticePage = () => {
+		router.push("/_admin/cs/createNotice");
+	}
+
 	return (
 		// @ts-ignore
 		<Box component={'div'} className={'content'} style={{ minHeight:'1300px' }}>
@@ -145,6 +151,14 @@ const FaqArticles: NextPage = ({initialInquiry, ...props}: any) => {
 				borderRadius: 5
 			}}
 				variant={'h4'}>Frequently asked questions</Typography>
+					<Button onClick={createNoticePage} sx={{
+				color: "white",
+				margin: "10px",
+				borderRadius: 5
+			}} variant="contained" color="success">
+				<NoteAddIcon sx={{height: "17px"}}/>
+				Create FAQ
+			</Button>
 			</Box>
 			<Box component={'div'} className={'table-wrap'}>
 				<Box component={'div'} sx={{ width: '100%', typography: 'body1' }}>

@@ -350,3 +350,56 @@ mutation Unsubscribe($input: String!) {
     }
 }
 `;
+
+/**************************
+ *       NOTIFICATION     *
+ *************************/
+
+export const GET_ALL_NOTIFICATIONS = gql`
+query GetAllNotifications($input: NotificationsInquiry!) {
+    getAllNotifications(input: $input) {
+        list {
+            _id
+            notificationType
+            notificationStatus
+            notificationGroup
+            notificationTitle
+            notificationDesc
+            authorId
+            receiverId
+            propertyId
+            articleId
+            createdAt
+            updatedAt
+        }
+        metaCounter {
+            total
+        }
+    }
+}
+`;
+
+export const DELETE_NOTIFICATION = gql`
+mutation RemoveNotification($input: String!) {
+    removeNotification(notificationId: $input) {
+        _id
+        notificationType
+        notificationStatus
+        notificationGroup
+        notificationTitle
+        notificationDesc
+        authorId
+        receiverId
+        propertyId
+        articleId
+        createdAt
+        updatedAt
+    }
+}
+`;
+
+export const MARK_AS_READ = gql`
+mutation MarkAsReadNofications {
+    markAsReadNofications
+}
+`;
