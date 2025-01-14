@@ -116,6 +116,33 @@ body::-webkit-scrollbar {
 						display: flex;
 						flex-direction: row;
 						justify-content: flex-end;
+						// background-color: gray;
+						.notification-icon {
+							cursor: pointer;
+						}
+						
+						.notification-badge {
+							position: absolute;
+							top: 0;
+							right: 0;
+							background-color: red;
+							color: white;
+							border-radius: 50%;
+							padding: 2px 6px;
+							font-size: 12px;
+						}
+						
+						.notification-dropdown {
+							position: absolute;
+							top: 40px;
+							right: 0;
+							width: 300px;
+							background-color: white;
+							border: 1px solid #ccc;
+							box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+							padding: 10px;
+							z-index: 1000;
+						}
 						.join-box {
 							width: 184px;
 							height: 35px;
@@ -175,10 +202,71 @@ body::-webkit-scrollbar {
 		}
 	}
 
+	.notification-content {
+		display: flex;
+		flex-direction: column;
+		width: 400px;
+		background-color: white;
+		
+		.notification-div {
+			padding: 20px;
+			.notification-div-title {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 25px;
+				.notification-content-title {
+					font-size: 20px;
+					font-family: 'Poppins', sans-serif;
+					color: black;
+					font-weight: 500;
+				}
+				.notification-del {
+					padding: 8px 10px;
+					color: #ffffff;
+					font-size: 16px;
+					font-weight: 600;
+					background: red;
+				}
+			}
+			.notifications {
+				display: flex;
+				flex-direction: column;
+				overflow-y: auto;
+				height: 400px;
+
+				.notification-content-main {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					padding-bottom: 10px;
+					margin-top: 10px;
+					.notification-list-img {
+						border-radius: 50%;
+						margin-right: 20px;
+					}
+					.notification-content-name {
+						width: 300px;
+						// margin-right: auto;
+					}
+					.delete-btn {
+						margin-left: auto;
+						height: 20px;
+						width: 50px;
+						background-color: red;
+						color: white;
+					}
+				}
+			}
+
+		}
+	}
+
 	.header-main {
 		position: relative;
 		width: 100%;
-		height: 650px;
+		height: 900px;
 		background-image: url('/img/banner/headerM.jpg');
 		background-size: cover;
 		display: flex;

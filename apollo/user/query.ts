@@ -651,3 +651,31 @@ query GetMemberFollowings($input: FollowInquiry!) {
     }
 }
 `;
+
+/**************************
+ *       NOTIFICATION     *
+ *************************/
+
+export const GET_ALL_NOTIFICATIONS = gql`
+query GetAllNotifications($input: NotificationsInquiry!) {
+    getAllNotifications(input: $input) {
+        list {
+            _id
+            notificationType
+            notificationStatus
+            notificationGroup
+            notificationTitle
+            notificationDesc
+            authorId
+            receiverId
+            propertyId
+            articleId
+            createdAt
+            updatedAt
+        }
+        metaCounter {
+            total
+        }
+    }
+}
+`;
