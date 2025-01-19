@@ -1,10 +1,4 @@
 import { Button, Stack, Typography } from '@mui/material';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import DeleteIcon from '@mui/icons-material/Delete';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ALL_NOTIFICATIONS } from '../../../apollo/user/query';
@@ -13,7 +7,6 @@ import { T } from '../../types/common';
 import { useState } from 'react';
 import { NotificationsInquiry } from '../../types/notification/notification.input';
 import { Notification } from '../../types/notification/notification';
-import { NotificationType } from '../../enums/notification.enum';
 
 interface NotificationsProps {
 	initialInput: NotificationsInquiry;
@@ -25,9 +18,8 @@ const NotifacationContent = (props: NotificationsProps) => {
 	const [total, setTotal] = useState<number>(0);
 	const [notifications, setNotifications] = useState<Notification[]>([]);
 	const [limit, setLimit] = useState(initialInput.limit || 4); // Maintain dynamic limit state
-	const [showMore, setShowMore] = useState(false);
 
-	// APOLLO-REQUEST
+	// APOLLO REQUEST
 	const [deleteNotification] = useMutation(DELETE_NOTIFICATION);
 
 	const {
@@ -40,7 +32,7 @@ const NotifacationContent = (props: NotificationsProps) => {
 		variables: {
 			input: {
 				...initialInput,
-				limit, // Dynamically change limit here
+				limit, 
 			},
 		},
 		notifyOnNetworkStatusChange: true,
@@ -86,7 +78,7 @@ const NotifacationContent = (props: NotificationsProps) => {
 		}
 	};
 
-	if (notifications) console.log('notifications: +++', notifications);
+	if (notifications) console.log('notifications:', notifications);
 
 	if (device === 'mobile') {
 		return <div>Notification Mobile </div>;
@@ -117,7 +109,8 @@ const NotifacationContent = (props: NotificationsProps) => {
 							))
 						)}
 					</Stack>
-                    <Button className={'notification-del'} onClick={handleMarkAllAsRead}>
+                    <Button className={'notification-del'}
+                        onClick={handleMarkAllAsRead}>
 						Mark As Read
 					</Button>
 				</div>

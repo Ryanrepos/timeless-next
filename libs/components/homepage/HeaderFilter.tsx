@@ -244,6 +244,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 			if (searchFilter?.search?.options?.length == 0) {
 				delete searchFilter.search.options;
 			}
+			console.log("Search Filter:", searchFilter);
 
 			await router.push(
 				`/property?input=${JSON.stringify(searchFilter)}`,
@@ -279,7 +280,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						</Box>
 						<Box className={`box ${openBrands ? 'on' : ''}`} onClick={brandStateChangeHandler}>
 							<span>
-								{searchFilter?.search?.brandList ? `${searchFilter?.search?.brandList[0]} brands}` : t('Brands')}
+								{searchFilter?.search?.brandList ? `${searchFilter?.search?.brandList[0]}` : t('Brands')}
 							</span>
 							<ExpandMoreIcon />
 						</Box>
@@ -310,7 +311,6 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						{propertyCategory.map((type: string) => {
 							return (
 								<div
-									// style={{ backgroundImage: `url(/img/banner/types/${type.toLowerCase()}.webp)` }}
 									onClick={() => propertyCategorySelectHandler(type)}
 									key={type}
 								>
@@ -321,16 +321,16 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					</div>
 
 					<div className={`filter-rooms ${openBrands ? 'on' : ''}`} ref={roomsRef}>
-						{[ 'Rolex', 
-						'Patek Philippe', 
-						'Audemars Piguet', 
-						'Vacheron Constantin', 
-						'Richard Mille',
-  						'Jaeger Lecoultre',
-  						'Cartier',
-  						'Hublot',
-  						'Omega',
-  						'Breitling',].map((brand: string) => {
+						{[ 'ROLEX',  
+							'PATEK PHILIPPE',  
+							'AUDEMARS PIGUET',  
+							'VACHERON CONSTANTIN',  
+							'RICHARD MILLE',  
+							'JAEGER LECOULTRE',  
+							'CARTIER',  
+							'HUBLOT',  
+							'OMEGA',  
+							'BREITLING',].map((brand: string) => {
 							return (
 								<span onClick={() => propertyBrandSelectHandler(brand)} key={brand}>
 									{brand}
@@ -373,26 +373,6 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<Divider sx={{ mt: '30px', mb: '35px' }} />
 							<div className={'middle'}>
 								<div className={'row-box'}>
-									{/* <div className={'box'}>
-										<span>bedrooms</span>
-										<div className={'inside'}>
-											<div
-												className={`room ${!searchFilter?.search?.bedsList ? 'active' : ''}`}
-												onClick={() => propertyBedSelectHandler(0)}
-											>
-												Any
-											</div>
-											{[1, 2, 3, 4, 5].map((bed: number) => (
-												<div
-													className={`room ${searchFilter?.search?.bedsList?.includes(bed) ? 'active' : ''}`}
-													onClick={() => propertyBedSelectHandler(bed)}
-													key={bed}
-												>
-													{bed == 0 ? 'Any' : bed}
-												</div>
-											))}
-										</div>
-									</div> */}
 									<div className={'box'}>
 										<span>options</span>
 										<div className={'inside'}>
@@ -451,50 +431,6 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 											</FormControl>
 										</div>
 									</div>
-									{/* <div className={'box'}>
-										<span>square meter</span>
-										<div className={'inside space-between align-center'}>
-											<FormControl sx={{ width: '122px' }}>
-												<Select
-													value={searchFilter?.search?.squaresRange?.start}
-													onChange={(e: any) => propertySquareHandler(e, 'start')}
-													displayEmpty
-													inputProps={{ 'aria-label': 'Without label' }}
-													MenuProps={MenuProps}
-												>
-													{propertySquare.map((square: number) => (
-														<MenuItem
-															value={square}
-															disabled={(searchFilter?.search?.squaresRange?.end || 0) < square}
-															key={square}
-														>
-															{square}
-														</MenuItem>
-													))}
-												</Select>
-											</FormControl>
-											<div className={'minus-line'}></div>
-											<FormControl sx={{ width: '122px' }}>
-												<Select
-													value={searchFilter?.search?.squaresRange?.end}
-													onChange={(e: any) => propertySquareHandler(e, 'end')}
-													displayEmpty
-													inputProps={{ 'aria-label': 'Without label' }}
-													MenuProps={MenuProps}
-												>
-													{propertySquare.map((square: number) => (
-														<MenuItem
-															value={square}
-															disabled={(searchFilter?.search?.squaresRange?.start || 0) > square}
-															key={square}
-														>
-															{square}
-														</MenuItem>
-													))}
-												</Select>
-											</FormControl>
-										</div>
-									</div> */}
 								</div>
 							</div>
 							<Divider sx={{ mt: '60px', mb: '18px' }} />
@@ -526,7 +462,7 @@ HeaderFilter.defaultProps = {
 		search: {
 			squaresRange: {
 				start: 0,
-				end: 500,
+				end: 50000,
 			},
 			pricesRange: {
 				start: 0,

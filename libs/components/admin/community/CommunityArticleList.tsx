@@ -24,6 +24,7 @@ import { REACT_APP_API_URL } from "../../../config";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
 import { BoardArticleStatus } from "../../../enums/board-article.enum";
+import LaunchIcon from '@mui/icons-material/Launch';
 
 interface Data {
 	category: string;
@@ -149,23 +150,14 @@ const CommunityArticleList = (props: CommunityArticleListProps) => {
 
 						{articles.length !== 0 &&
 							articles.map((article: BoardArticle, index: number) => (
-								<TableRow hover key={article._id} sx={{ "&:last-child td, &:last-child th": { border: 0 }}}>
+								<TableRow hover key={article._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
 									<TableCell align="left">{article._id}</TableCell>
-									<TableCell align="left">
-										<Box component={"div"}>
-											{article.articleTitle === BoardArticleStatus.ACTIVE && (
-												<NavLink
-													href={`/community/detail?articleCategory=${article.articleCategory}&id=${article._id}`}
-													className={"img_box"}
-												>
-													<IconButton className="btn_window">
-														<Tooltip title={"Open window"}>
-															<OpenInBrowserRoundedIcon />
-														</Tooltip>
-													</IconButton>
-												</NavLink>
-											)}
-										</Box>
+									<TableCell align="left">{article.articleTitle}
+									<NavLink href={`/community/detail?articleCategory=${article.articleCategory}&id=${article._id}`}>
+									<LaunchIcon sx={{height: "15px", width: "15px", marginTop: "0px"}}/>
+										{/* className={"img_box"} */}
+									</NavLink>		
+									
 									</TableCell>
 									<TableCell align="left">{article.articleCategory}</TableCell>
 									<TableCell align="left" className={"name"}>

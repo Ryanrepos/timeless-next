@@ -46,6 +46,7 @@
 						border-radius: 12px;
 						background: #fff;
 						box-shadow: $box-shadow;
+						
 
 						.find-your-home {
 							position: relative;
@@ -74,6 +75,7 @@
 								font-weight: 500;
 								line-height: normal;
 								background-color: rgb(224, 210, 210);
+								padding-left: 10px;
 
 							}
 							.title {
@@ -86,6 +88,7 @@
 								font-weight: 500;
 								line-height: normal;
 								background-color: rgb(224, 210, 210);
+								padding-left: 10px;
 							}
 							.input-box {
 								position: relative;
@@ -96,26 +99,19 @@
 									cursor: pointer;
 								}
 								.search-input {
-									width: 200px;
+									width: 230px;
 									height: 53px;
 									border-radius: 8px;
-									border: 1px solid #ddd;
+									box-shadow: $box-shadow;
 									background: #fff;
 									outline: none;
-									padding: 10px;
+									padding-left: 10px;
 									color: black;
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
 									font-weight: 400;
 									line-height: 26px;
-								}
-								img {
-									position: absolute;
-									width: 18px;
-									height: 17px;
-									top: 18px;
-									left: 15px;
 								}
 								.property-checkbox {
 									width: 16px;
@@ -229,8 +225,8 @@
 						height: auto;
 						flex-direction: row;
 						flex-wrap: wrap;
-						justify-content: flex-start;
-						gap: 10px;
+						justify-content: center;
+						gap: 20px;
 						.card-config {
 							width: 296px;
 							height: 350px;  

@@ -95,23 +95,6 @@ const Filter = (props: FilterType) => {
 			})}`, { scroll: false }).then();
 		}
 
-		//---
-
-		// if (searchFilter?.search?.options?.length == 0) {
-		// 	delete searchFilter.search.options;
-		// 	router.push(`/property?input=${JSON.stringify({
-		// 		...searchFilter,
-		// 		search: {
-		// 			...searchFilter.search,
-		// 		},
-		// 	})}`, `/property?input=${JSON.stringify({
-		// 		...searchFilter,
-		// 		search: {
-		// 			...searchFilter.search,
-		// 		},
-		// 	})}`, { scroll: false }).then();
-		// }
-
 		if (searchFilter?.search?.locationList) setShowMore(true);
 		if (searchFilter?.search?.brandList) setShowMore(true);
 	}, [searchFilter]);
@@ -356,7 +339,6 @@ const Filter = (props: FilterType) => {
 								</>
 							}
 						/>
-						<img src={'/img/icons/search_icon.png'} alt={''} />
 						<Tooltip title="Reset">
 							<IconButton onClick={refreshHandler}>
 								<RefreshIcon />
