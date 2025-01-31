@@ -6,6 +6,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { onError } from '@apollo/client/link/error';
 import { getJwtToken } from '../libs/auth';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
+import { Message } from '@mui/icons-material';
 import { sweetErrorAlert } from '../libs/sweetAlert';
 import { socketVar } from './store';
 let apolloClient: ApolloClient<NormalizedCacheObject>;

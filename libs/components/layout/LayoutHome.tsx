@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Top from '../Top';
 import Footer from '../Footer';
 import { Stack } from '@mui/material';
-// import FiberContainer from '../common/FiberContainer';
 import HeaderFilter from '../homepage/HeaderFilter';
 import { userVar } from '../../../apollo/store';
 import { useReactiveVar } from '@apollo/client';
@@ -16,7 +15,7 @@ import 'swiper/css/navigation';
 
 const withLayoutMain = (Component: any) => {
 	return (props: any) => {
-		const device = useDeviceDetect();
+		const device:any = useDeviceDetect();
 		const user = useReactiveVar(userVar);
 
 		/** LIFECYCLES **/

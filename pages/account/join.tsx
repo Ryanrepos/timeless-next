@@ -57,7 +57,7 @@ const Join: NextPage = () => {
 			await signUp(input.nick, input.password, input.phone, input.type);
 			await router.push(`${router.query.referrer ?? '/'}`);
 		} catch (err: any) {
-			await sweetMixinErrorAlert(err.message);
+			// await sweetMixinErrorAlert(err.message);
 		}
 	}, [input]);
 

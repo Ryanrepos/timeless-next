@@ -101,7 +101,7 @@ const requestSignUpJwtToken = async ({
 			fetchPolicy: 'network-only',
 		});
 
-		console.log('---------- login ----------');
+		console.log('---------- signup result ----------:', result);
 		const { accessToken } = result?.data?.signup;
 
 		return { jwtToken: accessToken };

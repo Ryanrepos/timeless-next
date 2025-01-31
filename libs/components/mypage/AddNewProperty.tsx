@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Stack, Typography } from '@mui/material';
+import { Button, Divider, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { PropertyLocation, PropertyType } from '../../enums/property.enum';
-import { REACT_APP_API_URL, propertySquare } from '../../config';
+import { PropertyBrand, PropertyCategory, PropertyLocation } from '../../enums/property.enum';
+import { REACT_APP_API_URL } from '../../config';
 import { PropertyInput } from '../../types/property/property.input';
 import axios from 'axios';
 import { getJwtToken } from '../../auth';
@@ -18,7 +18,8 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 	const router = useRouter();
 	const inputRef = useRef<any>(null);
 	const [insertPropertyData, setInsertPropertyData] = useState<PropertyInput>(initialValues);
-	const [propertyType, setPropertyType] = useState<PropertyType[]>(Object.values(PropertyType));
+	const [propertyCategory, setPropertyCategory] = useState<PropertyCategory[]>(Object.values(PropertyCategory));
+	const [propertyBrand, setPropertyBrand] = useState<PropertyBrand[]>(Object.values(PropertyBrand));
 	const [propertyLocation, setPropertyLocation] = useState<PropertyLocation[]>(Object.values(PropertyLocation));
 	const token = getJwtToken();
 	const user = useReactiveVar(userVar);
@@ -46,14 +47,10 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 			...insertPropertyData,
 			propertyTitle: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyTitle : '',
 			propertyPrice: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyPrice : 0,
-			propertyType: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyType : '',
+			propertyCategory: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyCategory : '',
+			propertyBrand: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyBrand : '',
 			propertyLocation: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyLocation : '',
 			propertyAddress: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyAddress : '',
-			propertyBarter: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyBarter : false,
-			propertyRent: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyRent : false,
-			propertyRooms: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyRooms : 0,
-			propertyBeds: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyBeds : 0,
-			propertySquare: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertySquare : 0,
 			propertyDesc: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyDesc : '',
 			propertyImages: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyImages : [],
 		});
@@ -116,14 +113,11 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 		if (
 			insertPropertyData.propertyTitle === '' ||
 			insertPropertyData.propertyPrice === 0 || // @ts-ignore
-			insertPropertyData.propertyType === '' || // @ts-ignore
+			insertPropertyData.propertyCategory === '' || // @ts-ignore
 			insertPropertyData.propertyLocation === '' || // @ts-ignore
 			insertPropertyData.propertyAddress === '' || // @ts-ignore
-			insertPropertyData.propertyBarter === '' || // @ts-ignore
-			insertPropertyData.propertyRent === '' ||
-			insertPropertyData.propertyRooms === 0 ||
-			insertPropertyData.propertyBeds === 0 ||
-			insertPropertyData.propertySquare === 0 ||
+			insertPropertyData.propertyBrand === '' || // @ts-ignore
+
 			insertPropertyData.propertyDesc === '' ||
 			insertPropertyData.propertyImages.length === 0
 		) {
@@ -137,7 +131,8 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 			variables: {
 			  input: insertPropertyData,
 			},
-		  });
+		  },
+		);
 	  
 		  await sweetMixinSuccessAlert('This property has been created successfully.');
 		  await router.push({
@@ -147,6 +142,7 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 			},
 		  });
 		} catch (err: any) {
+			console.log("her is ur error!!!!")
 		  sweetErrorHandling(err).then();
 		}
 	  }, [insertPropertyData]);
@@ -222,21 +218,21 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									/>
 								</Stack>
 								<Stack className="price-year-after-price">
-									<Typography className="title">Select Type</Typography>
+									<Typography className="title">Select Category</Typography>
 									<select
 										className={'select-description'}
-										defaultValue={insertPropertyData.propertyType || 'select'}
-										value={insertPropertyData.propertyType || 'select'}
+										defaultValue={insertPropertyData.propertyCategory || 'select'}
+										value={insertPropertyData.propertyCategory || 'select'}
 										onChange={({ target: { value } }) =>
 											// @ts-ignore
-											setInsertPropertyData({ ...insertPropertyData, propertyType: value })
+											setInsertPropertyData({ ...insertPropertyData, propertyCategory: value })
 										}
 									>
 										<>
 											<option selected={true} disabled={true} value={'select'}>
 												Select
 											</option>
-											{propertyType.map((type: any) => (
+											{propertyCategory.map((type: any) => (
 												<option value={`${type}`} key={type}>
 													{type}
 												</option>
@@ -288,110 +284,29 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 								</Stack>
 							</Stack>
 
-							<Stack className="config-row">
-								<Stack className="price-year-after-price">
-									<Typography className="title">Barter</Typography>
+							<Stack className="price-year-after-price">
+									<br/>
+									<Typography className="title">Select Brand</Typography>
 									<select
-										className={'select-description'}
-										value={insertPropertyData.propertyBarter ? 'yes' : 'no'}
-										defaultValue={insertPropertyData.propertyBarter ? 'yes' : 'no'}
+										className={'select-description-brand'}
+										defaultValue={insertPropertyData.propertyBrand || 'select'}
+										value={insertPropertyData.propertyBrand || 'select'}
 										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyBarter: value === 'yes' })
+											// @ts-ignore
+											setInsertPropertyData({ ...insertPropertyData, propertyBrand: value })
 										}
 									>
-										<option disabled={true} selected={true}>
-											Select
-										</option>
-										<option value={'yes'}>Yes</option>
-										<option value={'no'}>No</option>
+										<>
+											<option selected={true} disabled={true} value={'select'}>
+												Select
+											</option>
+											{propertyBrand.map((brand: any) => (
+												<option value={`${brand}`} key={brand}>
+													{brand}
+												</option>
+											))}
+										</>
 									</select>
-									<div className={'divider'}></div>
-									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
-								</Stack>
-								<Stack className="price-year-after-price">
-									<Typography className="title">Rent</Typography>
-									<select
-										className={'select-description'}
-										value={insertPropertyData.propertyRent ? 'yes' : 'no'}
-										defaultValue={insertPropertyData.propertyRent ? 'yes' : 'no'}
-										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyRent: value === 'yes' })
-										}
-									>
-										<option disabled={true} selected={true}>
-											Select
-										</option>
-										<option value={'yes'}>Yes</option>
-										<option value={'no'}>No</option>
-									</select>
-									<div className={'divider'}></div>
-									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
-								</Stack>
-							</Stack>
-
-							<Stack className="config-row">
-								<Stack className="price-year-after-price">
-									<Typography className="title">Rooms</Typography>
-									<select
-										className={'select-description'}
-										value={insertPropertyData.propertyRooms || 'select'}
-										defaultValue={insertPropertyData.propertyRooms || 'select'}
-										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyRooms: parseInt(value) })
-										}
-									>
-										<option disabled={true} selected={true} value={'select'}>
-											Select
-										</option>
-										{[1, 2, 3, 4, 5].map((room: number) => (
-											<option value={`${room}`}>{room}</option>
-										))}
-									</select>
-									<div className={'divider'}></div>
-									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
-								</Stack>
-								<Stack className="price-year-after-price">
-									<Typography className="title">Bed</Typography>
-									<select
-										className={'select-description'}
-										value={insertPropertyData.propertyBeds || 'select'}
-										defaultValue={insertPropertyData.propertyBeds || 'select'}
-										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyBeds: parseInt(value) })
-										}
-									>
-										<option disabled={true} selected={true} value={'select'}>
-											Select
-										</option>
-										{[1, 2, 3, 4, 5].map((bed: number) => (
-											<option value={`${bed}`}>{bed}</option>
-										))}
-									</select>
-									<div className={'divider'}></div>
-									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
-								</Stack>
-								<Stack className="price-year-after-price">
-									<Typography className="title">Square</Typography>
-									<select
-										className={'select-description'}
-										value={insertPropertyData.propertySquare || 'select'}
-										defaultValue={insertPropertyData.propertySquare || 'select'}
-										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertySquare: parseInt(value) })
-										}
-									>
-										<option disabled={true} selected={true} value={'select'}>
-											Select
-										</option>
-										{propertySquare.map((square: number) => {
-											if (square !== 0) {
-												return <option value={`${square}`}>{square}</option>;
-											}
-										})}
-									</select>
-									<div className={'divider'}></div>
-									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
-								</Stack>
 							</Stack>
 
 							<Typography className="property-title">Property Description</Typography>
@@ -521,14 +436,10 @@ AddProperty.defaultProps = {
 	initialValues: {
 		propertyTitle: '',
 		propertyPrice: 0,
-		propertyType: '',
+		propertyCategory: '',
 		propertyLocation: '',
 		propertyAddress: '',
-		propertyBarter: false,
-		propertyRent: false,
-		propertyRooms: 0,
-		propertyBeds: 0,
-		propertySquare: 0,
+		propertyBrand: '',
 		propertyDesc: '',
 		propertyImages: [],
 	},

@@ -2,19 +2,18 @@ import { PropertyBrand, PropertyCategory, PropertyLocation, PropertyStatus } fro
 import { Direction } from '../../enums/common.enum';
 
 export interface PropertyInput {
-	propertyCategory: PropertyCategory;
+	_id: any;
+	propertyCategory: PropertyCategory; 
 	propertyLocation: PropertyLocation;
-	propertyBrand: PropertyBrand;
+	propertyBrand: PropertyBrand; 
 	propertyAddress: string;
 	propertyTitle: string;
 	propertyPrice: number;
 	propertyImages: string[];
 	propertyDesc?: string;
-	propertyNew?: boolean;
-	propertyWorn?: boolean;
 	memberId?: string;
 	constructedAt?: Date;
-}
+  }
 
 interface PISearch {
 	memberId?: string;

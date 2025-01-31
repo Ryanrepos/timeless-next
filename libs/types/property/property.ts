@@ -26,8 +26,8 @@ export interface Property {
 	propertyRank: number;
 	propertyImages: string[];
 	propertyDesc?: string;
-	propertyNew: boolean;
-	propertyWorn: boolean;
+	propertyNew?: string;
+	propertyWorn?: string;
 	memberId: string;
 	soldAt?: Date;
 	deletedAt?: Date;

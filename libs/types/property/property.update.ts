@@ -2,7 +2,7 @@ import { PropertyLocation, PropertyStatus, PropertyCategory, PropertyBrand } fro
 
 export interface PropertyUpdate {
 	_id: string;
-	propertyType?: PropertyCategory;
+	propertyCategory?: PropertyCategory;
 	propertyStatus?: PropertyStatus;
 	propertyLocation?: PropertyLocation;
 	propertyBrand?: PropertyBrand;
@@ -11,8 +11,6 @@ export interface PropertyUpdate {
 	propertyPrice?: number;
 	propertyImages?: string[];
 	propertyDesc?: string;
-	propertyNew?: boolean;
-	propertyWorn?: boolean;
 	soldAt?: Date;
 	deletedAt?: Date;
 	constructedAt?: Date;

@@ -42,14 +42,14 @@ const NotificationTotal = (props: NotificationsProps) => {
 	if (device === 'mobile') {
 		return <div>Notification Mobile</div>;
 	} else {
-		return <div className={'notification-badge'}>{total > 10 ? '10+' : total}</div>;
+		return <div className={'notification-badge'}>{total > 20 ? '20+' : total}</div>;
 	}
 };
 
 NotificationTotal.defaultProps = {
 	initialInput: {
 		page: 1,
-		limit: 5,
+		limit: 10,
 		sort: 'createdAt',
 		direction: 'DESC',
 		search: {},

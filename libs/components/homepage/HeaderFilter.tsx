@@ -241,9 +241,9 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				delete searchFilter.search.brandList;
 			}
 
-			if (searchFilter?.search?.options?.length == 0) {
-				delete searchFilter.search.options;
-			}
+			// if (searchFilter?.search?.options?.length == 0) {
+			// 	delete searchFilter.search.options;
+			// }
 			console.log("Search Filter:", searchFilter);
 
 			await router.push(
@@ -322,11 +322,11 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 
 					<div className={`filter-rooms ${openBrands ? 'on' : ''}`} ref={roomsRef}>
 						{[ 'ROLEX',  
-							'PATEK PHILIPPE',  
-							'AUDEMARS PIGUET',  
-							'VACHERON CONSTANTIN',  
-							'RICHARD MILLE',  
-							'JAEGER LECOULTRE',  
+							'PATEK_PHILIPPE',  
+							'AUDEMARS_PIGUET',  
+							'VACHERON_CONSTANTIN',  
+							'RICHARD_MILLE',  
+							'JAEGER_LECOULTRE',  
 							'CARTIER',  
 							'HUBLOT',  
 							'OMEGA',  
@@ -460,10 +460,6 @@ HeaderFilter.defaultProps = {
 		page: 1,
 		limit: 9,
 		search: {
-			squaresRange: {
-				start: 0,
-				end: 50000,
-			},
 			pricesRange: {
 				start: 0,
 				end: 2000000,
