@@ -96,7 +96,7 @@ function createIsomorphicLink() {
 				graphQLErrors.map(({ message, locations, path, extensions }) => {
 					console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`);
 					if (!message.includes('input')) {
-						sweetErrorAlert(message);
+						// sweetErrorAlert(message);
 					}
 				});
 			}

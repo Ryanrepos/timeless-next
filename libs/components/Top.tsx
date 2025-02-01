@@ -160,7 +160,7 @@ const Top = () => {
 				<Stack className="navbar-top">
 					<Link href="/">
 						<Image
-							src="/img/logo/banner.png" // Replace with your logo file path
+							src="/img/logo/banner.png" 
 							alt="Logo"
 							width={180}
 							height={40}
